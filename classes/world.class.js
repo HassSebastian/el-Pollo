@@ -7,6 +7,8 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    statusBottles = new StautusBottles();
+    statusCoin = new StatusCoin();
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -24,7 +26,6 @@ class World {
 
     run() {
         setInterval(() => {
-
             this.checkCollision();
             this.checkThroObjects();
         }, 200);
@@ -55,6 +56,8 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.statusBottles);
+        this.addToMap(this.statusCoin);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
