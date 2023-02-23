@@ -18,7 +18,7 @@ class StautusBottles extends DrawableObject {
         this.x = 0;
         this.y = 50;
         this.height = 50;
-        this.includeBottles(0);
+        this.includesBottles(0   );
 
     }
 
