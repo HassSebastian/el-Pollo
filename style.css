@@ -2,13 +2,13 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
 }
 
 canvas{
     background-color: black;
     display: block;
 }
-
 
 @media only screen and (max-width: 720px) {
     canvas {
