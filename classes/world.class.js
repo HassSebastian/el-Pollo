@@ -10,6 +10,9 @@ class World {
     statusBottles = new StautusBottles();
     statusCoin = new StatusCoin();
     throwableObject = [];
+    bottles = new Bottles();
+    coins = new Coins();
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -46,7 +49,28 @@ class World {
             };
         });
 
+        this.level.bottles.forEach((index) => {
+            if(this.character.isColliding(index)) {
+                //this.collisionWithBottles();
+                console.log(world.level.bottles.index);
+            }
+        });
+        this.level.coins.forEach((coins) => {
+            if(this.character.isColliding(coins)) {
+                //this.collisionWithCoin();
+            }
+        });
+}
+
+    collisionWithCoin() {
+        world.level.coins.splice(0,1);
     }
+
+    collisionWithBottles() {
+        let bottles = world.level.bottles;
+        bottles.splice(0,1);
+    }
+                
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -61,6 +85,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObject);
