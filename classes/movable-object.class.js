@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    salsa_bottles = 0;
+    coin = 0;
 
 
     applyGravity() {
@@ -67,6 +69,15 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
+    collectingSalsa_bottles(){
+        this.salsa_bottles += 1;
+        console.log(this.salsa_bottles);
+    }
+
+    collectingCoins(){
+        this.coin += 1;
+        console.log(this.coin);
+    }
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

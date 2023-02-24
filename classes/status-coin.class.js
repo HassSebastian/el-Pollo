@@ -9,7 +9,7 @@ class StatusCoin extends DrawableObject {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png'
     ];
 
-    coin = 1;
+    coin = 0;
 
     constructor(){
         super();
@@ -25,19 +25,20 @@ class StatusCoin extends DrawableObject {
         let path = this.IMAGES_Coin[this.resolveImageIndexCoin()];
         this.img = this.imageCache[path];
     }
+
     resolveImageIndexCoin() {
         if (this.coin == 0) {
             return 0;
-        } else if (this.coin > 20) {
-            return 1;
-        } else if (this.coin > 40) {
-            return 2;
-        } else if (this.coin > 60) {
-            return 3;
-        } else if (this.coin > 80) {
-            return 4;
-        } else {
+        } else if (this.coin >= 10) {
             return 5;
+        } else if (this.coin >= 8) {
+            return 4;
+        } else if (this.coin >= 6) {
+            return 3;
+        } else if (this.coin >= 4) {
+            return 2;
+        } else {
+            return 1;
         }
     }
 
