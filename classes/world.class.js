@@ -34,8 +34,8 @@ class World {
         }, 200);
     }
 
-    checkThroObjects(){
-        if(this.keyboard.SPACE) {
+    checkThroObjects() {
+        if (this.keyboard.SPACE) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
         }
@@ -48,29 +48,33 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             };
         });
-
-        this.level.bottles.forEach((index) => {
-            if(this.character.isColliding(index)) {
-                //this.collisionWithBottles();
-                console.log(world.level.bottles.index);
-            }
+        this.level.bottles.forEach((bottles) => {
+            if (this.character.isColliding(bottles)) {
+                this.collisionWithBottles(bottles);
+            };
         });
+
+
         this.level.coins.forEach((coins) => {
-            if(this.character.isColliding(coins)) {
-                //this.collisionWithCoin();
+            if (this.character.isColliding(coins)) {
+                this.collisionWithCoin(coins);
             }
         });
-}
-
-    collisionWithCoin() {
-        world.level.coins.splice(0,1);
     }
 
-    collisionWithBottles() {
-        let bottles = world.level.bottles;
-        bottles.splice(0,1);
+    collisionWithCoin(coins) {
+        let coinsx = coins.x;
+        const index = world.level.coins.findIndex(item => item.x === coinsx);
+        this.level.coins.splice(index, 1);
     }
-                
+
+    collisionWithBottles(bottles) {
+        let bottlesx = bottles.x;
+        const index = world.level.bottles.findIndex(item => item.x === bottlesx);
+        this.level.bottles.splice(index, 1);
+    }
+
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
