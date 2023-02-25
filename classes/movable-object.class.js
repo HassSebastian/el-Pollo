@@ -71,12 +71,10 @@ class MovableObject extends DrawableObject {
 
     collectingSalsa_bottles(){
         this.salsa_bottles += 1;
-        console.log(this.salsa_bottles);
     }
 
     collectingCoins(){
         this.coin += 1;
-        console.log(this.coin);
     }
 
     playAnimation(images) {

@@ -32,15 +32,15 @@ class StautusBottles extends DrawableObject {
     resolveImageIndexBottles() {
         if (this.salsa_bottles == 0) {
             return 0;
-        } else if (this.salsa_bottles >= 10) {
+        } else if (this.salsa_bottles == 10 || this.salsa_bottles == 9) {
             return 5;
-        } else if (this.salsa_bottles >= 8) {
+        } else if (this.salsa_bottles == 8 || this.salsa_bottles == 7) {
             return 4;
-        } else if (this.salsa_bottles >= 6) {
+        } else if (this.salsa_bottles == 6 || this.salsa_bottles == 5) {
             return 3;
-        } else if (this.salsa_bottles >= 4) {
+        } else if (this.salsa_bottles == 4 || this.salsa_bottles == 3) {
             return 2;
-        } else {
+        } else if (this.salsa_bottles == 2 || this.salsa_bottles == 1) {
             return 1;
         }
     }

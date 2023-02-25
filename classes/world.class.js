@@ -35,9 +35,10 @@ class World {
     }
 
     checkThroObjects() {
-        if (this.keyboard.SPACE) {
+        if (this.keyboard.SPACE && this.statusBottles.salsa_bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
+            this.statusBottles.salsa_bottles -= 1;
         }
     }
 
