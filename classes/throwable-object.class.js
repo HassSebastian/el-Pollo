@@ -27,8 +27,6 @@ IMMAGES_Bottles_Splash = [
         this.width = 50;
 
         this.trow();
-        //this.applyGravity();
-
         this.animate();
     }
 
@@ -43,7 +41,11 @@ IMMAGES_Bottles_Splash = [
     
     animate() {
         setInterval(() => {
+            if(this.isAboveGround){
             this.playAnimation(this.IMMAGES_Bottles_Rotation);
+            }else{
+                this.playAnimation(this.IMMAGES_Bottles_Splash);
+            }
         }, 100);
     }
 
