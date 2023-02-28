@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
+    energy = 0;
     lastHit = 0;
     salsa_bottles = 0;
     coin = 0;
@@ -37,13 +37,14 @@ class MovableObject extends DrawableObject {
 
 
     hit() {
-        this.energy -= 1;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime();
+            this.energy += 5;
+            if (this.energy >= 99) {
+                this.energy = 100;
+            } else {
+                this.lastHit = new Date().getTime();
+            }
         }
-    }
+    
 
 
     isHurt() {
@@ -55,7 +56,7 @@ class MovableObject extends DrawableObject {
 
 
     isDead() {
-        return this.energy == 0;
+        return this.energy == 100;
     }
 
 
@@ -69,12 +70,13 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
-    collectingSalsa_bottles(){
-        this.salsa_bottles += 1;
+    collectingSalsa_bottles() {
+
+        this.salsa_bottles += 10;
     }
 
-    collectingCoins(){
-        this.coin += 1;
+    collectingCoins() {
+        this.coin += 10;
     }
 
     playAnimation(images) {
@@ -83,4 +85,7 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+
+
 }
+

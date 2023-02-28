@@ -4,7 +4,6 @@ class Character extends MovableObject {
     y = 30;
     speed = 5;
 
-
     IMAGES_Idle = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',
@@ -68,11 +67,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
 
+
     world;
     walking_sound = new Audio('audio/running.mp3');
+    isRealyDead = 0;
+
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_Idle);
         this.loadImages(this.IMAGES_Long_Idle);
         this.loadImages(this.IMAGES_Walking);
@@ -107,13 +109,21 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
 
+
         setInterval(() => {
-            if(this.isIdle()){
-                this.playAnimation(this.IMAGES_Idle)
-            }else if (this.isLondIdle()) {
-                this.playAnimation(this.IMAGES_Long_Idle);
-            }else if (this.isDead()) {
-                this.playAnimation(this.IMAGES_IsDead);
+
+            // if(this.isIdle()){
+            //     this.playAnimation(this.IMAGES_Idle)
+            // }else if (this.isLondIdle()) {
+            //     this.playAnimation(this.IMAGES_Long_Idle);
+            // }else 
+            if (this.isDead()) {
+                if (this.isRealyDead <= 10) {
+                    this.playAnimation(this.IMAGES_IsDead);
+                    this.isRealyDead++;
+                } else {
+                    this.loadImage(this.IMAGES_IsDead[6])
+                }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_Hurt);
             } else if (this.isAboveGround()) {
@@ -126,6 +136,7 @@ class Character extends MovableObject {
 
         }, 50);
     }
+
 
     jump() {
         this.speedY = 30;

@@ -35,10 +35,11 @@ class World {
     }
 
     checkThroObjects() {
-        if (this.keyboard.SPACE && this.statusBottles.salsa_bottles > 0) {
+        if (this.keyboard.SPACE && this.statusBottles.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
-            this.statusBottles.salsa_bottles -= 1;
+            this.statusBottles.percentage -= 10;
+            this.statusBottles.setPercentage(this.statusBottles.percentage);
         }
     }
 
@@ -53,7 +54,7 @@ class World {
         this.level.bottles.forEach((bottles) => {
             if (this.character.isColliding(bottles)) {
                 this.character.collectingSalsa_bottles();
-                this.statusBottles.includesBottles(this.character.salsa_bottles);
+                this.statusBottles.setPercentage(this.character.salsa_bottles);
                 this.collisionWithBottles(bottles);
             };
         });
@@ -61,7 +62,7 @@ class World {
         this.level.coins.forEach((coins) => {
             if (this.character.isColliding(coins)) {
                 this.character.collectingCoins();
-                this.statusCoin.setincludesCoin(this.character.coin);
+                this.statusCoin.setPercentage(this.character.coin);
                 this.collisionWithCoin(coins);
             }
         });

@@ -10,7 +10,8 @@ class StautusBottles extends DrawableObject {
     ];
 
 
-    salsa_bottles = 0;
+    percentage = 0;
+
 
     constructor(){
         super();
@@ -18,31 +19,15 @@ class StautusBottles extends DrawableObject {
         this.x = 0;
         this.y = 50;
         this.height = 50;
-        this.includesBottles(0);
-
+        this.setPercentage(0);
     }
 
-    includesBottles(salsa_bottles) {
-        this.salsa_bottles = salsa_bottles;
-        let path = this.IMAGES_Bottle[this.resolveImageIndexBottles()];
+    setPercentage(percentage) {
+        this.percentage = percentage;
+        let path = this.IMAGES_Bottle[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
 
-    resolveImageIndexBottles() {
-        if (this.salsa_bottles == 0) {
-            return 0;
-        } else if (this.salsa_bottles == 10 || this.salsa_bottles == 9) {
-            return 5;
-        } else if (this.salsa_bottles == 8 || this.salsa_bottles == 7) {
-            return 4;
-        } else if (this.salsa_bottles == 6 || this.salsa_bottles == 5) {
-            return 3;
-        } else if (this.salsa_bottles == 4 || this.salsa_bottles == 3) {
-            return 2;
-        } else if (this.salsa_bottles == 2 || this.salsa_bottles == 1) {
-            return 1;
-        }
-    }
 
 }
