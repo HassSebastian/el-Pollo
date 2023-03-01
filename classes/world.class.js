@@ -34,6 +34,7 @@ class World {
         }, 200);
     }
 
+
     checkThroObjects() {
         if (this.keyboard.SPACE && this.statusBottles.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
@@ -48,12 +49,11 @@ class World {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            }else if(this.character.isColliding(enemy) && this.character.isAboveGround()){
-                this.enemy.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png');
-
-                }
+            } else if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 //this.enemy.isDead();
-                //world.level.enemies.splice(enemy,1);
+
+                world.level.enemies.splice(enemy, 1);
+            }
             ;
         });
 
