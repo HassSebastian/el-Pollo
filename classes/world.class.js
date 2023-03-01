@@ -12,7 +12,7 @@ class World {
     throwableObject = [];
     bottles = new Bottles();
     coins = new Coins();
-
+    isDie = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -45,10 +45,16 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            };
+            }else if(this.character.isColliding(enemy) && this.character.isAboveGround()){
+                this.enemy.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png');
+
+                }
+                //this.enemy.isDead();
+                //world.level.enemies.splice(enemy,1);
+            ;
         });
 
         this.level.bottles.forEach((bottles) => {

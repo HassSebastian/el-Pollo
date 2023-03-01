@@ -28,7 +28,7 @@ class Chicken_smal extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if(!this.isDead){
+            if(!this.isDie){
             this.playAnimation(this.IMAGES_Walking);
             }else{
                 this.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png');
@@ -36,7 +36,6 @@ class Chicken_smal extends MovableObject {
         }, 100);
 
     }
-
 
 
 
