@@ -13,6 +13,7 @@ class World {
     bottles = new Bottles();
     coins = new Coins();
     isDie = false;
+    game_over = new GameOver();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,6 +32,7 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThroObjects();
+            this.checkGameOver();
         }, 200);
     }
 
@@ -74,6 +76,12 @@ class World {
         });
     }
 
+    checkGameOver(){
+        if(this.character.isRealyDead >= 10){
+            this.game_over.isGameOver();
+        }
+    }
+
     collisionWithCoin(coins) {
         let coinsx = coins.x;
         const index = world.level.coins.findIndex(item => item.x === coinsx);
@@ -91,6 +99,8 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addToMap(this.game_over);
+
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
@@ -145,4 +155,5 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
 }

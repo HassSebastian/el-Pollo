@@ -70,7 +70,7 @@ class Character extends MovableObject {
 
     world;
     walking_sound = new Audio('audio/running.mp3');
-    isRealyDead = 0;
+    //isRealyDead = 0;
     startAnimation = false;
     idleAnimation = 0;
 
@@ -139,9 +139,8 @@ class Character extends MovableObject {
                     this.startAnimation = true;
                 }
             }
-            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE){
+            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt()){
                 this.idleAnimation ++;
-                console.log(this.idleAnimation);
             }else{
                 this.idleAnimation = 0;
             };
@@ -173,5 +172,10 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_Long_Idle);
         }
     }
+
+    gameOver(){
+
+    }
+
 
 }
