@@ -45,6 +45,7 @@ class World {
     }
 
     checkCollision() {
+
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead){
                 this.character.hit();
