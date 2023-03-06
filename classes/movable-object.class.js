@@ -69,20 +69,28 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
-    collectingSalsa_bottles() {
-
-        this.salsa_bottles += 10;
-    }
-
-    collectingCoins() {
-        this.coin += 10;
-    }
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+    collisionWithCoin(coins) {
+        let coinsx = coins.x;
+        const index = world.level.coins.findIndex(item => item.x === coinsx);
+        this.world.level.coins.splice(index, 1);
+        this.coin += 10;
+
+    }
+
+    collisionWithBottles(bottles) {
+        let bottlesx = bottles.x;
+        const index = world.level.bottles.findIndex(item => item.x === bottlesx);
+        this.world.level.bottles.splice(index, 1);
+        this.salsa_bottles += 10;
+
     }
 
 

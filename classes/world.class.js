@@ -59,32 +59,19 @@ class World {
 
         this.level.bottles.forEach((bottles) => {
             if (this.character.isColliding(bottles)) {
-                this.character.collectingSalsa_bottles();
                 this.statusBottles.setPercentage(this.character.salsa_bottles);
-                this.collisionWithBottles(bottles);
+                this.character.collisionWithBottles(bottles);
             };
         });
 
         this.level.coins.forEach((coins) => {
             if (this.character.isColliding(coins)) {
-                this.character.collectingCoins();
                 this.statusCoin.setPercentage(this.character.coin);
-                this.collisionWithCoin(coins);
+                this.character.collisionWithCoin(coins);
             }
         });
     }
 
-    collisionWithCoin(coins) {
-        let coinsx = coins.x;
-        const index = world.level.coins.findIndex(item => item.x === coinsx);
-        this.level.coins.splice(index, 1);
-    }
-
-    collisionWithBottles(bottles) {
-        let bottlesx = bottles.x;
-        const index = world.level.bottles.findIndex(item => item.x === bottlesx);
-        this.level.bottles.splice(index, 1);
-    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
