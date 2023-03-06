@@ -98,11 +98,10 @@ class MovableObject extends DrawableObject {
 
     isCollidingFromUp(enemy) {
         let enemyx = enemy.x;
-        const index = world.level.enemies.findIndex(item => item.x === enemyx);
+        let index = world.level.enemies.findIndex(item => item.x === enemyx);
         world.level.enemies[index].speed = 0;
         world.level.enemies[index].isDead = true;
-        setTimeout(() => {world.level.enemies.splice(index)},1000);
-        
+        setTimeout(() => {world.level.enemies.splice(index,1)},500);
     }
 
 

@@ -12,7 +12,6 @@ class World {
     throwableObject = [];
     bottles = new Bottles();
     coins = new Coins();
-    isDie = false;
     chicken = new Chicken();
 
     constructor(canvas, keyboard) {
@@ -47,12 +46,11 @@ class World {
 
     checkCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead){
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                this.chicken.isDead = true;
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                 this.character.isCollidingFromUp(enemy);
             }
             ;
