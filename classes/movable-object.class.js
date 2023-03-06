@@ -7,6 +7,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     salsa_bottles = 0;
     coin = 0;
+    isRealyDead = 0;
+
 
 
     applyGravity() {
