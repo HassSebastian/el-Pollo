@@ -70,7 +70,7 @@ class Character extends MovableObject {
 
     world;
     walking_sound = new Audio('audio/running.mp3');
-    //isRealyDead = 0;
+    isRealyDead = 0;
     startAnimation = false;
     idleAnimation = 0;
 
@@ -139,20 +139,16 @@ class Character extends MovableObject {
                     this.startAnimation = true;
                 }
             }
-            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt()){
+            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead){
                 this.idleAnimation ++;
             }else{
                 this.idleAnimation = 0;
             };
-
-
         }, 150);
 
         setInterval(() => {
             this.idle();
             this.longIdle();
-
-
         },200)
     }
 

@@ -46,7 +46,6 @@ class ThrowableObject extends MovableObject {
             } else {
                 this.playAnimation(this.IMMAGES_Bottles_Rotation);
             }
-
         }, 50);
     }
 

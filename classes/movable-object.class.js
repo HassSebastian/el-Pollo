@@ -7,7 +7,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     salsa_bottles = 0;
     coin = 0;
-    isRealyDead = 0;
+
+
 
 
 
@@ -39,14 +40,14 @@ class MovableObject extends DrawableObject {
 
 
     hit() {
-            this.energy += 5;
-            if (this.energy >= 99) {
-                this.energy = 100;
-            } else {
-                this.lastHit = new Date().getTime();
-            }
+        this.energy += 5;
+        if (this.energy >= 99) {
+            this.energy = 100;
+        } else {
+            this.lastHit = new Date().getTime();
         }
-    
+    }
+
 
 
     isHurt() {
@@ -93,6 +94,15 @@ class MovableObject extends DrawableObject {
         this.world.level.bottles.splice(index, 1);
         this.salsa_bottles += 10;
 
+    }
+
+    isCollidingFromUp(enemy) {
+        let enemyx = enemy.x;
+        const index = world.level.enemies.findIndex(item => item.x === enemyx);
+        world.level.enemies[index].speed = 0;
+        world.level.enemies[index].isDead = true;
+        setTimeout(() => {world.level.enemies.splice(index)},1000);
+        
     }
 
 

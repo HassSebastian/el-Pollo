@@ -13,6 +13,7 @@ class World {
     bottles = new Bottles();
     coins = new Coins();
     isDie = false;
+    chicken = new Chicken();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -49,10 +50,10 @@ class World {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            } else if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                //this.enemy.isDead();
-
-                world.level.enemies.splice(enemy, 1);
+            }
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                this.chicken.isDead = true;
+                this.character.isCollidingFromUp(enemy);
             }
             ;
         });
