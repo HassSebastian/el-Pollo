@@ -9,7 +9,7 @@ class GameOver extends MovableObject {
 
     constructor(){
         super();
-        this.isGameOver();
+        // this.isGameOver();
     }
 
     isGameOver(){
