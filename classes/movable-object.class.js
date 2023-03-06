@@ -7,7 +7,12 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     salsa_bottles = 0;
     coin = 0;
+    deadEnemy = -1;
 
+    constructor() {
+        super();
+        this.clearDeadEnemy();
+    }
 
 
 
@@ -101,9 +106,20 @@ class MovableObject extends DrawableObject {
         let index = world.level.enemies.findIndex(item => item.x === enemyx);
         world.level.enemies[index].speed = 0;
         world.level.enemies[index].isDead = true;
-        setTimeout(() => {world.level.enemies.splice(index,1)},500);
+    }
+
+    clearDeadEnemy() {
+        setInterval(() => {
+            for (let i = 0; i < world.level.enemies.length; i++) {
+                if (world.level.enemies[i].isDead == true) {
+                    world.level.enemies.splice(i, 1);
+                    break;
+                }
+            }
+        }, 3000);
     }
 
 
+    
 }
 

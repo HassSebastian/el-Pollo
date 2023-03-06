@@ -53,8 +53,7 @@ class World {
             }
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                 this.character.isCollidingFromUp(enemy);
-            }
-            ;
+            };
         });
 
         this.level.bottles.forEach((bottles) => {
