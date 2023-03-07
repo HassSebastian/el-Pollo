@@ -69,6 +69,8 @@ class World {
                 this.character.collisionWithCoin(coins);
             }
         });
+
+        // this.level.enemies.forEach((endBoss))
     }
 
 

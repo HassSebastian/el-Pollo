@@ -11,9 +11,12 @@ class MovableObject extends DrawableObject {
 
     constructor() {
         super();
-        this.clearDeadEnemy();
+        this.start();
     }
 
+    start() {
+        setTimeout(this.clearDeadEnemy, 1000);
+    }
 
 
 
@@ -94,11 +97,13 @@ class MovableObject extends DrawableObject {
     }
 
     collisionWithBottles(bottles) {
-        let bottlesx = bottles.x;
-        const index = world.level.bottles.findIndex(item => item.x === bottlesx);
-        this.world.level.bottles.splice(index, 1);
-        this.salsa_bottles += 10;
-
+        if (this.salsa_bottles <= 100) {
+            console.log(this.salsa_bottles);
+            let bottlesx = bottles.x;
+            const index = world.level.bottles.findIndex(item => item.x === bottlesx);
+            this.world.level.bottles.splice(index, 1);
+            this.salsa_bottles += 10;
+        };
     }
 
     isCollidingFromUp(enemy) {
@@ -120,6 +125,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    
+
 }
 
