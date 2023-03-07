@@ -42,12 +42,17 @@ class World {
             this.statusBottles.percentage -= 10;
             this.statusBottles.setPercentage(this.statusBottles.percentage);
         }
+        if (this.throwableObject.length >= 1) {
+            if (this.throwableObject[0].y > 300) {
+                this.throwableObject.splice(0, 1);
+            };
+        }
     }
 
     checkCollision() {
 
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead){
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -70,7 +75,9 @@ class World {
             }
         });
 
-        // this.level.enemies.forEach((endBoss))
+
+
+
     }
 
 

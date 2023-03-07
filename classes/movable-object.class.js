@@ -124,7 +124,9 @@ class MovableObject extends DrawableObject {
         }, 3000);
     }
 
-
+    clearBottles() {
+        world.th
+    }
 
 }
 
