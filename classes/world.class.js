@@ -51,7 +51,7 @@ class World {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead && this.level.enemies == 'Endboss') {
                 this.character.isCollidingFromUp(enemy);
             };
         });
