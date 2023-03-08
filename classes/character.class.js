@@ -73,6 +73,7 @@ class Character extends MovableObject {
     isRealyDead = 0;
     startAnimation = false;
     idleAnimation = 0;
+    isDead = false;
 
 
     constructor() {
@@ -114,12 +115,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
 
-            // if(this.isIdle()){
-            //     this.playAnimation(this.IMAGES_Idle)
-            // }else if (this.isLondIdle()) {
-            //     this.playAnimation(this.IMAGES_Long_Idle);
-            // }else 
-            if (this.isDead()) {
+            if (this.isDead) {
                 if (this.isRealyDead <= 10) {
                     this.playAnimation(this.IMAGES_IsDead);
                     this.isRealyDead++;
@@ -147,7 +143,7 @@ class Character extends MovableObject {
         }, 150);
 
         setInterval(() => {
-            this.idle();
+            this.isIdle();
             this.longIdle();
         },200)
     }
@@ -157,7 +153,7 @@ class Character extends MovableObject {
         this.speedY = 30;
     }
 
-    idle(){
+    isIdle(){
         if(this.idleAnimation >= 30){
             this.playAnimation(this.IMAGES_Idle);
         }

@@ -9,10 +9,12 @@ class World {
     statusBar = new StatusBar();
     statusBottles = new StautusBottles();
     statusCoin = new StatusCoin();
+    statusEndboss = new EndBoss();
     throwableObject = [];
     bottles = new Bottles();
     coins = new Coins();
     chicken = new Chicken();
+    endboss = new Endboss();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,7 +33,7 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThroObjects();
-        }, 200);
+        }, 300);
     }
 
 
@@ -39,7 +41,8 @@ class World {
         if (this.keyboard.SPACE && this.statusBottles.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
-            this.statusBottles.percentage -= 10;
+            // this.statusBottles.percentage -= 10;
+            this.statusBottles.salsa_bottles -= 10;
             this.statusBottles.setPercentage(this.statusBottles.percentage);
         }
         if (this.throwableObject.length >= 1) {
@@ -50,13 +53,12 @@ class World {
     }
 
     checkCollision() {
-
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead && this.level.enemies == 'Endboss') {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                 this.character.isCollidingFromUp(enemy);
             };
         });
@@ -75,7 +77,13 @@ class World {
             }
         });
 
-
+        this.throwableObject.forEach((bottle) => {
+            if(this.endboss.isColliding(bottle)) {
+                this.endboss.bossHit += 1;
+                this.endboss.firstBossHit = true;
+                this.throwableObject.slice(bottle,1);
+            }
+        })
 
 
     }
@@ -92,6 +100,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBottles);
         this.addToMap(this.statusCoin);
+        // this.addToMap(this.statusEndboss);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);

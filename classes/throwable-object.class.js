@@ -40,15 +40,14 @@ class ThrowableObject extends MovableObject {
     }
 
     animate() {
-        let throe = setInterval(() => {
+        let throwable = setInterval(() => {
             if (this.y > 300) {
                 this.playAnimation(this.IMMAGES_Bottles_Splash);
             } else {
                 this.playAnimation(this.IMMAGES_Bottles_Rotation);
             }
             if (this.y > 320) {
-                clearInterval(throe);
-                console.log('raus');
+                clearInterval(throwable);
             }
         }, 50);
     }
