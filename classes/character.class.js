@@ -69,7 +69,7 @@ class Character extends MovableObject {
 
 
     world;
-    walking_sound = new Audio('audio/running.mp3');
+    walking_sound = new Audio('audio/walking.mp3');
     isRealyDead = 0;
     startAnimation = false;
     idleAnimation = 0;
