@@ -8,6 +8,10 @@ class MovableObject extends DrawableObject {
     salsa_bottles = 0;
     coin = 0;
     deadEnemy = -1;
+    bossHit = 0;
+
+
+
 
     constructor() {
         super();
@@ -98,7 +102,6 @@ class MovableObject extends DrawableObject {
 
     collisionWithBottles(bottles) {
         if (this.salsa_bottles <= 100) {
-            console.log(this.salsa_bottles);
             let bottlesx = bottles.x;
             const index = world.level.bottles.findIndex(item => item.x === bottlesx);
             this.world.level.bottles.splice(index, 1);
@@ -124,9 +127,6 @@ class MovableObject extends DrawableObject {
         }, 3000);
     }
 
-    clearBottles() {
-        world.th
-    }
 
 }
 

@@ -1,4 +1,4 @@
-class EndBoss extends DrawableObject {
+class StatusEndBoss extends DrawableObject {
 
     IMAGES_EndBoss = 'img/7_statusbars/2_statusbar_endboss/blue.png';
 

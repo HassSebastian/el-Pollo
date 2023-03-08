@@ -5,7 +5,7 @@ class Endboss extends MovableObject {
     y = -10;
     isDead = false;
     firstBossHit = false;
-    bossHit = 0;
+
 
 
     IMAGES_Walking = [
@@ -62,31 +62,18 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
 
-            // this.firstHit();
-            if(!this.firstBossHit){
+            if (!this.firstBossHit) {
                 this.playAnimation(this.IMAGES_Walking);
-            }else{
-                this.playAnimation(this.IMAGES_Attack);
-                console.log(this.firstBossHit);
+                console.log(this.firstBossHit, this.bossHit);
 
+            } else {
+                this.playAnimation(this.IMAGES_Dead);
+                console.log(this.firstBossHit, this.bossHit);
             };
 
-            
+
         }, 200);
     }
 
-    firstHit() {
-        if (this.bossHit > 0) {
-            return this.firstBossHit = true;
-        }
-    }
 
-    // chill() {
-
-    //     this.playAnimation(this.IMAGES_Alert);
-    // }
-    // attack() {
-    //     this.playAnimation(this.IMAGES_Dead);
-
-    // }
 }

@@ -9,12 +9,12 @@ class World {
     statusBar = new StatusBar();
     statusBottles = new StautusBottles();
     statusCoin = new StatusCoin();
-    statusEndboss = new EndBoss();
+    statusEndboss = new StatusEndBoss();
     throwableObject = [];
-    bottles = new Bottles();
-    coins = new Coins();
-    chicken = new Chicken();
-    endboss = new Endboss();
+    // bottles = new Bottles();
+    // coins = new Coins();
+    // chicken = new Chicken();
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,6 +38,7 @@ class World {
 
 
     checkThroObjects() {
+        // flasche werfen
         if (this.keyboard.SPACE && this.statusBottles.percentage > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
@@ -45,6 +46,7 @@ class World {
             this.statusBottles.salsa_bottles -= 10;
             this.statusBottles.setPercentage(this.statusBottles.percentage);
         }
+        // geworfene flasche löschen
         if (this.throwableObject.length >= 1) {
             if (this.throwableObject[0].y > 300) {
                 this.throwableObject.splice(0, 1);
@@ -53,34 +55,37 @@ class World {
     }
 
     checkCollision() {
+        // zusammenstoß mit einem enemy beim laufen
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
+            // springen auf ein enemy
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                 this.character.isCollidingFromUp(enemy);
             };
         });
-
+        // flaschen einsammeln
         this.level.bottles.forEach((bottles) => {
             if (this.character.isColliding(bottles)) {
                 this.statusBottles.setPercentage(this.character.salsa_bottles);
                 this.character.collisionWithBottles(bottles);
             };
         });
-
+        // coins einsammeln
         this.level.coins.forEach((coins) => {
             if (this.character.isColliding(coins)) {
                 this.statusCoin.setPercentage(this.character.coin);
                 this.character.collisionWithCoin(coins);
             }
         });
-
+        // Endbossschaden durch flasche
         this.throwableObject.forEach((bottle) => {
-            if(this.endboss.isColliding(bottle)) {
-                this.endboss.bossHit += 1;
-                this.endboss.firstBossHit = true;
+            if(this.level.enemies[0].isColliding(bottle)) {
+                this.level.enemies[0].bossHit += 1;
+                // this.endboss.firstBossHit = true;
+                this.level.enemies[0].firstBossHit = true;
                 this.throwableObject.slice(bottle,1);
             }
         })
