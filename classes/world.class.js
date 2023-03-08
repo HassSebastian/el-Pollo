@@ -11,11 +11,8 @@ class World {
     statusCoin = new StatusCoin();
     statusEndboss = new StatusEndBoss();
     throwableObject = [];
-    // bottles = new Bottles();
-    // coins = new Coins();
-    // chicken = new Chicken();
 
-
+    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;

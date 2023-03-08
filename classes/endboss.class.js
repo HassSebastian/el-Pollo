@@ -64,11 +64,9 @@ class Endboss extends MovableObject {
 
             if (!this.firstBossHit) {
                 this.playAnimation(this.IMAGES_Walking);
-                console.log(this.firstBossHit, this.bossHit);
 
             } else {
                 this.playAnimation(this.IMAGES_Dead);
-                console.log(this.firstBossHit, this.bossHit);
             };
 
 
