@@ -9,10 +9,10 @@ class World {
     statusBar = new StatusBar();
     statusBottles = new StautusBottles();
     statusCoin = new StatusCoin();
-    statusEndboss = new StatusEndBoss();
+    statusEndBoss = new StatusEndBoss();
     throwableObject = [];
 
-    
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -36,11 +36,11 @@ class World {
 
     checkThroObjects() {
         // flasche werfen
-        if (this.keyboard.SPACE && this.statusBottles.percentage > 0) {
+        if (this.keyboard.SPACE && this.statusBottles.percentage >= 10) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
-            // this.statusBottles.percentage -= 10;
-            this.statusBottles.salsa_bottles -= 10;
+            this.statusBottles.percentage -= 10;
+            this.character.salsa_bottles -= 10;
             this.statusBottles.setPercentage(this.statusBottles.percentage);
         }
         // geworfene flasche löschen
@@ -54,12 +54,12 @@ class World {
     checkCollision() {
         // zusammenstoß mit einem enemy beim laufen
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.isDead) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
             // springen auf ein enemy
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()/* && !this.level.enemies[0]*/) {
                 this.character.isCollidingFromUp(enemy);
             };
         });
@@ -79,11 +79,10 @@ class World {
         });
         // Endbossschaden durch flasche
         this.throwableObject.forEach((bottle) => {
-            if(this.level.enemies[0].isColliding(bottle)) {
-                this.level.enemies[0].bossHit += 1;
-                // this.endboss.firstBossHit = true;
-                this.level.enemies[0].firstBossHit = true;
-                this.throwableObject.slice(bottle,1);
+            if (this.level.enemies[0].isColliding(bottle)) {
+                this.level.enemies[0].hit();
+                this.throwableObject.slice(bottle, 1);
+                this.statusEndBoss.setPercentage(this.level.enemies[0].energy)
             }
         })
 
@@ -102,7 +101,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBottles);
         this.addToMap(this.statusCoin);
-        // this.addToMap(this.statusEndboss);
+        this.addToMap(this.statusEndBoss);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);

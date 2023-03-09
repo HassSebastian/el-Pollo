@@ -3,8 +3,6 @@ class Endboss extends MovableObject {
     height = 500;
     width = 300;
     y = -10;
-    isDead = false;
-    firstBossHit = false;
 
 
 
@@ -57,20 +55,25 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_Dead);
         this.x = 500; //2500
         this.animate();
+        this.speed = 4;
     }
 
     animate() {
         setInterval(() => {
 
-            if (!this.firstBossHit) {
-                this.playAnimation(this.IMAGES_Walking);
-
-            } else {
+            if (this.isDead()) {
+                this.speed = 0;
                 this.playAnimation(this.IMAGES_Dead);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_Hurt);
+            }else{
+                this.playAnimation(this.IMAGES_Alert);
+            } ;
+            if (this.energy == 5) {
+                this.moveRight();
+                this.playAnimation(this.IMAGES_Walking);
             };
-
-
-        }, 200);
+        }, 150);
     }
 
 

@@ -8,7 +8,6 @@ class MovableObject extends DrawableObject {
     salsa_bottles = 0;
     coin = 0;
     deadEnemy = -1;
-    bossHit = 0;
 
 
 
@@ -71,6 +70,7 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 100;
+
     }
 
 
@@ -112,21 +112,12 @@ class MovableObject extends DrawableObject {
     isCollidingFromUp(enemy) {
         let enemyx = enemy.x;
         let index = world.level.enemies.findIndex(item => item.x === enemyx);
+        world.level.enemies[index].energy = 100;
         world.level.enemies[index].speed = 0;
-        world.level.enemies[index].isDead = true;
+        world.level.enemies[index].deadEnemy = true;
     }
 
-    clearDeadEnemy() {
-        setInterval(() => {
-            for (let i = 0; i < world.level.enemies.length; i++) {
-                if (world.level.enemies[i].isDead == true) {
-                    world.level.enemies.splice(i, 1);
-                    break;
-                }
-            }
-        }, 3000);
-    }
-
+    
 
 }
 

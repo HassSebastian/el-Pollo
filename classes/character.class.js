@@ -73,7 +73,6 @@ class Character extends MovableObject {
     isRealyDead = 0;
     startAnimation = false;
     idleAnimation = 0;
-    isDead = false;
 
 
     constructor() {
@@ -115,7 +114,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
 
-            if (this.isDead) {
+            if (this.isDead()) {
                 if (this.isRealyDead <= 10) {
                     this.playAnimation(this.IMAGES_IsDead);
                     this.isRealyDead++;
@@ -135,7 +134,7 @@ class Character extends MovableObject {
                     this.startAnimation = true;
                 }
             }
-            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead){
+            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() &&!this.isDead()){
                 this.idleAnimation ++;
             }else{
                 this.idleAnimation = 0;
