@@ -164,9 +164,5 @@ class Character extends MovableObject {
         }
     }
 
-    gameOver(){
-
-    }
-
 
 }

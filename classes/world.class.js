@@ -54,7 +54,7 @@ class World {
     checkCollision() {
         // zusammenstoß mit einem enemy beim laufen
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.deadEnemy) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
