@@ -59,7 +59,7 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             }
             // springen auf ein enemy
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()/* && !this.level.enemies[0]*/) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 this.character.isCollidingFromUp(enemy);
             };
         });
