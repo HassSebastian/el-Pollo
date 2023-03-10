@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let intervalIds = [];
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -37,3 +38,12 @@ window.addEventListener("keyup", (e) => {
         keyboard.SPACE = false;
     }
 });
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
+
+function stopGame() {
+    intervalIds.forEach(clearInterval);
+}

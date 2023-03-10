@@ -1,23 +1,37 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    gap: 32px;
+    background-image: url('img/addPicture/desertBackground.png');
+    background-position: center;
+    background-size: cover fit;
+    background-repeat: no-repeat;
 }
 
-canvas{
+.d-none {
+    display: none;
+}
+
+canvas {
     background-color: black;
     display: block;
 }
 
+
 @media only screen and (max-width: 720px) {
-    canvas {
+
+    canvas,
+    #startScreen {
         width: 100%;
     }
 }
 
 @media only screen and (max-height: 480px) {
-    canvas {
+
+    canvas,
+    #startScreen {
         height: 100%;
     }
 }

@@ -104,7 +104,7 @@ class Character extends MovableObject {
                 this.jump_sound.play();
                 this.jump_sound.volume = .2;
             }
-            if (this.startAnimation){
+            if (this.startAnimation) {
                 this.music_sound.play();
                 this.music_sound.volume = .2
             }
@@ -116,8 +116,6 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.determineDeath();
-                this.dying_sound.play();
-                this.dying_sound.volume = .2;
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_Hurt);
                 this.hurt_sound.play();
@@ -145,6 +143,8 @@ class Character extends MovableObject {
             this.isRealyDead++;
         } else {
             this.loadImage(this.IMAGES_IsDead[6])
+            this.dying_sound.play();
+            this.dying_sound.volume = .2;
         };
     }
 
@@ -154,7 +154,7 @@ class Character extends MovableObject {
     }
 
     idleness() {
-        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead()) {
+        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead() && !this.isAboveGround()) {
             this.idleAnimation++;
         } else {
             this.idleAnimation = 0;

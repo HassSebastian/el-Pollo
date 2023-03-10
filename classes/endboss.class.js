@@ -74,7 +74,7 @@ class Endboss extends MovableObject {
                 if (this.diffrentBossToCharacter() < -20) {
                     this.playAnimation(this.IMAGES_Attack);
                     this.moveRight();
-                    this.speed = 15;
+                    this.speed = 25;
                     this.otherDirection = true;
                     this.spawnBoss_sound.play();
                 } else if (this.diffrentBossToCharacter() < 250) {
@@ -83,7 +83,7 @@ class Endboss extends MovableObject {
                     this.speed = 15;
                     this.otherDirection = false;
                     this.spawnBoss_sound.play();
-                } else if (this.diffrentBossToCharacter() < 400) {
+                } else if (this.diffrentBossToCharacter() <= 400) {
                     this.playAnimation(this.IMAGES_Walking);
                     this.moveLeft();
                 } else if (this.diffrentBossToCharacter() > 400) {
