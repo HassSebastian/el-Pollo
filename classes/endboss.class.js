@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
 
 
 
+
     IMAGES_Walking = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -53,7 +54,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_Attack);
         this.loadImages(this.IMAGES_Hurt);
         this.loadImages(this.IMAGES_Dead);
-        this.x = 500; //2500
+        this.x = 2500; //2500
         this.animate();
         this.speed = 4;
     }
@@ -64,16 +65,36 @@ class Endboss extends MovableObject {
             if (this.isDead()) {
                 this.speed = 0;
                 this.playAnimation(this.IMAGES_Dead);
+                
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_Hurt);
-            }else{
+                this.hitBoss_sound.play();
+                this.hitBoss_sound.volume = .2;
+            } else if (this.energy > 0) {
+                if (this.diffrentBossToCharacter() < -20) {
+                    this.playAnimation(this.IMAGES_Attack);
+                    this.moveRight();
+                    this.speed = 15;
+                    this.otherDirection = true;
+                    this.spawnBoss_sound.play();
+                } else if (this.diffrentBossToCharacter() < 250) {
+                    this.playAnimation(this.IMAGES_Attack)
+                    this.moveLeft();
+                    this.speed = 15;
+                    this.otherDirection = false;
+                    this.spawnBoss_sound.play();
+                } else if (this.diffrentBossToCharacter() < 400) {
+                    this.playAnimation(this.IMAGES_Walking);
+                    this.moveLeft();
+                } else if (this.diffrentBossToCharacter() > 400) {
+                    this.playAnimation(this.IMAGES_Walking);
+                    this.moveLeft();
+                    this.speed = 4;
+                }
+            } else {
                 this.playAnimation(this.IMAGES_Alert);
-            } ;
-            if (this.energy == 5) {
-                this.moveRight();
-                this.playAnimation(this.IMAGES_Walking);
             };
-        }, 150);
+        }, 100);
     }
 
 

@@ -10,6 +10,7 @@ class World {
     statusBottles = new StautusBottles();
     statusCoin = new StatusCoin();
     statusEndBoss = new StatusEndBoss();
+    gameOver = new GameOver();
     throwableObject = [];
 
 
@@ -30,6 +31,7 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThroObjects();
+            // this.diffrentBossToCharacter();
         }, 300);
     }
 
@@ -54,12 +56,14 @@ class World {
     checkCollision() {
         // zusammenstoß mit einem enemy beim laufen
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.deadEnemy) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.deadEnemy ||
+                // springen auf Boss verboten
+                this.character.isColliding(enemy) && this.character.isAboveGround() && this.level.enemies[0]) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-            }
+            };
             // springen auf ein enemy
-            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !this.level.enemies[0]) {
                 this.character.isCollidingFromUp(enemy);
             };
         });
@@ -92,33 +96,47 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
+        this.drawBackground();
+        this.drawStatusBars();
+        this.drawCharacter();
+        this.drawLevelObjects();
+        this.ctx.translate(-this.camera_x, 0);
+        this.drawRepeat();
+    }
+
+    drawBackground() {
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.gameOver);
+    }
 
-
+    drawStatusBars() {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBottles);
         this.addToMap(this.statusCoin);
         this.addToMap(this.statusEndBoss);
         this.ctx.translate(this.camera_x, 0);
+    }
 
+    drawCharacter() {
         this.addToMap(this.character);
+    }
+
+    drawLevelObjects() {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObject);
+    }
 
-        this.ctx.translate(-this.camera_x, 0);
-
+    drawRepeat() {
         let self = this;
         requestAnimationFrame(() => {
             self.draw();
         });
     }
-
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -130,11 +148,8 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
-
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -152,4 +167,6 @@ class World {
         this.ctx.restore();
     }
 
-}
+
+
+}   

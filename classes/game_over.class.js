@@ -9,13 +9,16 @@ class GameOver extends MovableObject {
 
     constructor(){
         super();
-        // this.isGameOver();
+        this.loadImage(this.IMAGE_GameOver);
+        this.isGameOver();
     }
 
     isGameOver(){
-        if(this.isHurt()){
+        setInterval(() =>{
+        if(this.gameOver()){
         this.loadImage(this.IMAGE_GameOver);
         }
+    },1000 / 60);
     }
 
 

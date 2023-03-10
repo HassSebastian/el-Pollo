@@ -45,6 +45,8 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMMAGES_Bottles_Splash);
             } else {
                 this.playAnimation(this.IMMAGES_Bottles_Rotation);
+                this.throw_sound.play();
+                this.throw_sound.volume = .2;
             }
             if (this.y > 320) {
                 clearInterval(throwable);
