@@ -20,6 +20,7 @@ class MovableObject extends DrawableObject {
     hitChicken_sound = new Audio('audio/hitChicken.mp3');
     spawnBoss_sound = new Audio('audio/spawn_endboss.mp3');
     hitBoss_sound = new Audio('audio/hit_endboss.mp3');
+    snoring_sound = new Audio('audio/snoring.mp3');
 
 
     applyGravity() {
@@ -121,22 +122,18 @@ class MovableObject extends DrawableObject {
         this.hitChicken_sound.volume = .2;
     }
 
-    
+
     diffrentBossToCharacter() {
         let result = world.level.enemies[0].x - world.character.x;
         return result;
     }
 
-    winAnimation(){
-        if(world.level.enemies[0].energy === 100){
+    winAnimation() {
+        if (world.level.enemies[0].energy === 100) {
             return true;
         }
     }
 
-    gameOver(){
-        if(world.character.energy === 100 || world.level.enemies[0].energy === 100) {
-            return true;
-        }
-    }
+
 }
 

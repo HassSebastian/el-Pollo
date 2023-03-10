@@ -170,6 +170,7 @@ class Character extends MovableObject {
     longIdle() {
         if (this.idleAnimation >= 60) {
             this.playAnimation(this.IMAGES_Long_Idle);
+            this.snoring_sound.play();
         }
     }
 

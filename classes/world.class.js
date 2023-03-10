@@ -31,7 +31,6 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkThroObjects();
-            // this.diffrentBossToCharacter();
         }, 300);
     }
 
@@ -93,7 +92,6 @@ class World {
 
     }
 
-
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -107,7 +105,6 @@ class World {
 
     drawBackground() {
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.gameOver);
     }
 
     drawStatusBars() {
@@ -129,6 +126,14 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObject);
+        this.ctx.translate(-this.camera_x, 0);
+        this.drawGameOverScreen();
+        this.ctx.translate(this.camera_x, 0);
+    }
+
+    drawGameOverScreen() {
+        if (this.character.isRealyDead >=10 || this.level.enemies[0].energy == 100)
+            this.addToMap(this.gameOver);
     }
 
     drawRepeat() {
