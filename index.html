@@ -37,15 +37,33 @@
 
 </head>
 
-<body onload="init()">
+<body>
 
 
     <h1>El pollo loco</h1>
 
     <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
     <div id="startScreen" class="">
-        <img id="playButton" src="img/addPicture/playButton.png">
+        <img id="playButton" src="img/addPicture/playButton.png" onclick="playGame()">
         <img src="img/9_intro_outro_screens/start/startscreen_1.png" width="720" height="480">
+        <div class="footer">
+            <div>
+                <span>Trow Bottle</span>
+                <img src="img/addPicture/space.png">
+            </div>
+            <div>
+                <span>Move Left</span>
+                <img src="img/addPicture/arrow.png">
+            </div>
+            <div class="arrowUp">
+                <span>Jump Up</span>
+                <img src="img/addPicture/arrow.png">
+            </div>
+            <div class="arrowRight">
+                <span>Move Right</span>
+                <img src="img/addPicture/arrow.png">
+            </div>
+        </div>
     </div>
 
 

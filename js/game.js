@@ -39,6 +39,12 @@ window.addEventListener("keyup", (e) => {
     }
 });
 
+function playGame(){
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('startScreen').classList.add('d-none');
+    init();
+}
+
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
