@@ -1,88 +1,87 @@
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    background-image: url('img/addPicture/desertBackground.png');
-    background-position: center;
-    background-size: cover fit;
-    background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background-image: url("img/addPicture/desertBackground.png");
+  background-position: center;
+  background-size: cover fit;
+  background-repeat: no-repeat;
+  font-family: Bubblegum Sans, sans-serif, serif;
 }
 
 .d-none {
-    display: none !important;
+  display: none !important;
 }
 
 canvas {
-    background-color: black;
-    display: block;
+  background-color: black;
+  display: block;
 }
 
-#startScreen{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 720px;
+#startScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 720px;
 }
 
-#playButton{
-    width: 50px;
-    height: 50px;
-    padding-bottom: 16px;
-    cursor: pointer;
-    transition: 250ms ease-in-out;
+#playButton {
+  width: 50px;
+  height: 50px;
+  padding-bottom: 16px;
+  cursor: pointer;
+  transition: 250ms ease-in-out;
 }
 
-#playButton:hover{
-    transform: scale(1.4);
-    transition: 250ms ease-in-out;
+#playButton:hover {
+  transform: scale(1.4);
+  transition: 250ms ease-in-out;
 }
 
-.footer{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding-top: 16px;
+.footer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 16px;
 }
 
-.footer div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+.footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-.footer img{
-    height: 30px;
-    width: 30px;
+.footer img {
+  height: 20px;
+  width: 20px;
 }
 
-.footer span{
-    font-size: large;
-    font-weight: bold;
+.footer span {
+  font-size: large;
+  font-weight: bold;
 }
 
-.arrowUp img{
-    transform: rotate(90deg);
+.arrowUp img {
+  transform: rotate(90deg);
 }
 
-.arrowRight img{
-    transform: rotate(180deg);
+.arrowRight img {
+  transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 720px) {
-
-    canvas,
-    #startScreen {
-        width: 100%;
-    }
+  canvas,
+  #startScreen {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-height: 480px) {
-
-    canvas,
-    #startScreen {
-        height: 100%;
-    }
+  canvas,
+  #startScreen {
+    height: 100%;
+  }
 }
