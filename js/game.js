@@ -3,10 +3,10 @@ let world;
 let keyboard = new Keyboard();
 let intervalIds = [];
 
-// function init() {
-//   canvas = document.getElementById("canvas");
-//   world = new World(canvas, keyboard);
-// }
+function init() {
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
+}
 
 window.addEventListener("keydown", (e) => {
   if (e.keyCode == 39) {
