@@ -61,8 +61,8 @@ class World {
           !enemy.deadEnemy) ||
         // springen auf Boss verboten
         (this.character.isColliding(enemy) &&
-          this.character.isAboveGround() &&
-          this.level.enemies[0])
+          !this.character.isAboveGround() &&
+          !this.level.enemies[0])
       ) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
@@ -70,8 +70,8 @@ class World {
       // springen auf ein enemy
       if (
         this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        !this.level.enemies[0]
+        this.character.isAboveGround() /*&&
+        !this.level.enemies[0]*/
       ) {
         this.character.isCollidingFromUp(enemy);
       }
@@ -140,14 +140,21 @@ class World {
   }
 
   drawGameOverScreen() {
-    if (this.character.isRealyDead >= 10 || this.level.enemies[0].energy == 100)
+    if (this.character.isRealyDead >= 10 || this.level.enemies[0].energy == 100) {
       this.addToMap(this.gameOver);
+      realyGameOverCounter++;
+      if (realyGameOverCounter == 200) {
+        realyGameOver = true;
+        realyGameOverCounter = 0;
+      }
+    }
   }
 
   drawRepeat() {
     let self = this;
-    requestAnimationFrame(() => {
-      self.draw();
+    let drawAnimation = requestAnimationFrame(() => {
+      if (!realyGameOver)
+        self.draw();
     });
   }
 
@@ -179,4 +186,5 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
 }

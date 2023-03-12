@@ -138,6 +138,9 @@ class Character extends MovableObject {
       this.loadImage(this.IMAGES_IsDead[6]);
       this.dying_sound.play();
       this.dying_sound.volume = 0.2;
+      if (realyGameOver) {
+        this.dying_sound.volume = 0;
+      }
     }
   }
 
@@ -177,7 +180,9 @@ class Character extends MovableObject {
   isWin() {
     if (this.winAnimation() && !this.isAboveGround()) {
       this.jump();
-      this.win_sound.play();
+      if (!realyGameOver) {
+        this.win_sound.play();
+      }
     }
   }
 }

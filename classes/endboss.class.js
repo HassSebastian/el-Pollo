@@ -64,6 +64,11 @@ class Endboss extends MovableObject {
         this.hitBoss_sound.play();
         this.hitBoss_sound.volume = 0.2;
       } else if (this.energy > 0) {
+        if(this.is){
+          this.speed = 15;
+          this.moveRight();
+          this.loadImages(this.IMAGES_Walking);
+        }
         if (this.diffrentBossToCharacter() < -20) {
           this.playAnimation(this.IMAGES_Attack);
           this.moveRight();

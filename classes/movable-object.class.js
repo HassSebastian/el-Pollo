@@ -21,6 +21,7 @@ class MovableObject extends DrawableObject {
   spawnBoss_sound = new Audio("audio/spawn_endboss.mp3");
   hitBoss_sound = new Audio("audio/hit_endboss.mp3");
   snoring_sound = new Audio("audio/snoring.mp3");
+  
 
   applyGravity() {
     setInterval(() => {
@@ -125,4 +126,5 @@ class MovableObject extends DrawableObject {
       return true;
     }
   }
+  
 }

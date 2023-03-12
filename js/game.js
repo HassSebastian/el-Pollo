@@ -2,10 +2,13 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let intervalIds = [];
+let realyGameOver = false;
+let realyGameOverCounter = 0;
 
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+  gameOver();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -39,15 +42,20 @@ window.addEventListener("keyup", (e) => {
 });
 
 function playGame() {
+  init();
   document.getElementById("canvas").classList.remove("d-none");
   document.getElementById("startScreen").classList.add("d-none");
+
 }
 
-function setStoppableInterval(fn, time) {
-  let id = setInterval(fn, time);
-  intervalIds.push(id);
+function gameOver() {
+  setInterval(() => {
+    if (realyGameOver) {
+      document.getElementById('newGame').classList.remove('d-none');
+    }
+  }, 500);
 }
 
-function stopGame() {
-  intervalIds.forEach(clearInterval);
+function newGame(){
+location.reload(true);
 }
