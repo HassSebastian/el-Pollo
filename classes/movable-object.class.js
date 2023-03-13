@@ -134,6 +134,12 @@ class MovableObject extends DrawableObject {
   }
 
 
+  characterIsDead() {
+    if (world.character.energy === 100)
+      return true;
+  }
+
+
   winAnimation() {
     if (world.level.enemies[0].energy === 100) {
       return true;

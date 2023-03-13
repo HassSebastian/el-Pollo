@@ -69,10 +69,7 @@ class World {
         (this.character.isColliding(enemy) &&
           !this.character.isAboveGround() &&
           !enemy.deadEnemy) ||
-        // springen auf Boss verboten
-        (this.character.isColliding(enemy) &&
-          !this.character.isAboveGround() &&
-          !this.level.enemies[0])
+        this.character.isColliding(this.level.enemies[0])
       ) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
@@ -80,8 +77,8 @@ class World {
       // springen auf ein enemy
       if (
         this.character.isColliding(enemy) &&
-        this.character.isAboveGround() /*&&
-        !this.level.enemies[0]*/
+        this.character.isAboveGround() &&
+        !this.character.isColliding(this.level.enemies[0])
       ) {
         this.character.isCollidingFromUp(enemy);
       }

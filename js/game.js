@@ -45,8 +45,10 @@ window.addEventListener("keyup", (e) => {
 });
 
 
-function playGame() {
-  init();
+async function playGame() {
+  await initLevel();
+  // init();
+  await setTimeout(init, 100);
   document.getElementById("canvas").classList.remove("d-none");
   document.getElementById("startScreen").classList.add("d-none");
 }
