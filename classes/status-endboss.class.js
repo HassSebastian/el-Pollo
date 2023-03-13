@@ -8,7 +8,9 @@ class StatusEndBoss extends DrawableObject {
     "img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png",
   ];
 
+
   percentage = 0;
+
 
   constructor() {
     super();
@@ -19,6 +21,7 @@ class StatusEndBoss extends DrawableObject {
     this.setPercentage(0);
     this.otherDirection = true;
   }
+
 
   setPercentage(percentage) {
     this.percentage = percentage;

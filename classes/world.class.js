@@ -12,6 +12,12 @@ class World {
   gameOver = new GameOver();
   throwableObject = [];
 
+
+  /**
+   * 
+   * @param {*} canvas 
+   * @param {*} keyboard 
+   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -21,9 +27,11 @@ class World {
     this.run();
   }
 
+
   setWorld() {
     this.character.world = this;
   }
+
 
   run() {
     setInterval(() => {
@@ -31,6 +39,7 @@ class World {
       this.checkThroObjects();
     }, 300);
   }
+
 
   checkThroObjects() {
     // flasche werfen
@@ -51,6 +60,7 @@ class World {
       }
     }
   }
+
 
   checkCollision() {
     // zusammenstoß mit einem enemy beim laufen
@@ -100,6 +110,7 @@ class World {
     });
   }
 
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -111,9 +122,11 @@ class World {
     this.drawRepeat();
   }
 
+
   drawBackground() {
     this.addObjectsToMap(this.level.backgroundObjects);
   }
+
 
   drawStatusBars() {
     this.ctx.translate(-this.camera_x, 0);
@@ -124,9 +137,11 @@ class World {
     this.ctx.translate(this.camera_x, 0);
   }
 
+
   drawCharacter() {
     this.addToMap(this.character);
   }
+
 
   drawLevelObjects() {
     this.addObjectsToMap(this.level.coins);
@@ -139,6 +154,7 @@ class World {
     this.ctx.translate(this.camera_x, 0);
   }
 
+
   drawGameOverScreen() {
     if (this.character.isRealyDead >= 10 || this.level.enemies[0].energy == 100) {
       this.addToMap(this.gameOver);
@@ -150,6 +166,7 @@ class World {
     }
   }
 
+
   drawRepeat() {
     let self = this;
     let drawAnimation = requestAnimationFrame(() => {
@@ -158,11 +175,13 @@ class World {
     });
   }
 
+
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
+
 
   addToMap(mo) {
     if (mo.otherDirection) {
@@ -175,12 +194,14 @@ class World {
     }
   }
 
+
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
     this.ctx.scale(-1, 1);
     mo.x = mo.x * -1;
   }
+
 
   flipImageBack(mo) {
     mo.x = mo.x * -1;

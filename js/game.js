@@ -5,11 +5,13 @@ let intervalIds = [];
 let realyGameOver = false;
 let realyGameOverCounter = 0;
 
+
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
   gameOver();
 }
+
 
 window.addEventListener("keydown", (e) => {
   if (e.keyCode == 39) {
@@ -26,6 +28,7 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
+
 window.addEventListener("keyup", (e) => {
   if (e.keyCode == 39) {
     keyboard.RIGHT = false;
@@ -41,12 +44,13 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
+
 function playGame() {
   init();
   document.getElementById("canvas").classList.remove("d-none");
   document.getElementById("startScreen").classList.add("d-none");
-
 }
+
 
 function gameOver() {
   setInterval(() => {
@@ -56,6 +60,7 @@ function gameOver() {
   }, 500);
 }
 
-function newGame(){
-location.reload(true);
+
+function newGame() {
+  location.reload(true);
 }

@@ -21,7 +21,7 @@ class MovableObject extends DrawableObject {
   spawnBoss_sound = new Audio("audio/spawn_endboss.mp3");
   hitBoss_sound = new Audio("audio/hit_endboss.mp3");
   snoring_sound = new Audio("audio/snoring.mp3");
-  
+
 
   applyGravity() {
     setInterval(() => {
@@ -32,6 +32,7 @@ class MovableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
+
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
@@ -39,6 +40,7 @@ class MovableObject extends DrawableObject {
       return this.y < 160;
     }
   }
+
 
   isColliding(mo) {
     return (
@@ -49,6 +51,7 @@ class MovableObject extends DrawableObject {
     );
   }
 
+
   hit() {
     this.energy += 5;
     if (this.energy >= 99) {
@@ -58,24 +61,29 @@ class MovableObject extends DrawableObject {
     }
   }
 
+
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000; //sekunden
     return timepassed < 1;
   }
 
+
   isDead() {
     return this.energy == 100;
   }
+
 
   moveRight() {
     this.x += this.speed;
     this.otherDirection = false;
   }
 
+
   moveLeft() {
     this.x -= this.speed;
   }
+
 
   playAnimation(images) {
     let i = this.currentImage % images.length;
@@ -83,6 +91,7 @@ class MovableObject extends DrawableObject {
     this.img = this.imageCache[path];
     this.currentImage++;
   }
+
 
   collisionWithCoin(coins) {
     let coinsx = coins.x;
@@ -92,6 +101,7 @@ class MovableObject extends DrawableObject {
     this.coin_sound.play();
     this.coin_sound.volume = 0.2;
   }
+
 
   collisionWithBottles(bottles) {
     if (this.salsa_bottles <= 100) {
@@ -106,6 +116,7 @@ class MovableObject extends DrawableObject {
     }
   }
 
+
   isCollidingFromUp(enemy) {
     let enemyx = enemy.x;
     let index = world.level.enemies.findIndex((item) => item.x === enemyx);
@@ -116,15 +127,17 @@ class MovableObject extends DrawableObject {
     this.hitChicken_sound.volume = 0.2;
   }
 
+
   diffrentBossToCharacter() {
     let result = world.level.enemies[0].x - world.character.x;
     return result;
   }
+
 
   winAnimation() {
     if (world.level.enemies[0].energy === 100) {
       return true;
     }
   }
-  
+
 }

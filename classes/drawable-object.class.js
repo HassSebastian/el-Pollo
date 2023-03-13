@@ -7,10 +7,12 @@ class DrawableObject {
   height = 200;
   width = 150;
 
+
   loadImage(path) {
     this.img = new Image();
     this.img.src = path;
   }
+
 
   draw(ctx) {
     try {
@@ -20,6 +22,7 @@ class DrawableObject {
       console.log("Could not load,", this.img.src);
     }
   }
+
 
   drawFrame(ctx) {
     if (
@@ -38,6 +41,7 @@ class DrawableObject {
     }
   }
 
+
   loadImages(arr) {
     arr.forEach((path) => {
       let img = new Image();
@@ -45,6 +49,7 @@ class DrawableObject {
       this.imageCache[path] = img;
     });
   }
+
 
   resolveImageIndex() {
     if (this.percentage > 99) {
