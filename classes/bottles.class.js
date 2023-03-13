@@ -1,7 +1,7 @@
 class Bottles extends DrawableObject {
   height = 80;
   width = 80;
-  y = 370;
+  y = 340;
 
 
   constructor() {

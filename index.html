@@ -36,10 +36,21 @@
     <script src="./js/game.js"></script>
   </head>
 
-  <body>
-    <h1>El pollo loco</h1>
-
-    <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+  <body onload="init()">
+    <h1 id="headLine">El pollo loco</h1>
+    <div id="turnDevice" class="turnDevice">
+      <img src="img/addPicture/turn-device.png" />
+      <span>Turn Your Device</span>
+    </div>
+    <div id="canvasContainer" class="canvasContainer">
+      <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+      <div id="touchButtons" class="touchButtons d-none">
+        <img class="arrowUp" src="img/addPicture/arrow.png" />
+        <img src="img/addPicture/space.png" />
+        <img src="img/addPicture/arrow.png" />
+        <img class="arrowRight" src="img/addPicture/arrow.png" />
+      </div>
+    </div>
     <div id="startScreen" class="">
       <img
         id="playButton"
@@ -60,20 +71,17 @@
           <span>Move Left</span>
           <img src="img/addPicture/arrow.png" />
         </div>
-        <div class="arrowUp">
+        <div>
           <span>Jump Up</span>
-          <img src="img/addPicture/arrow.png" />
+          <img class="arrowUp" src="img/addPicture/arrow.png" />
         </div>
-        <div class="arrowRight">
+        <div>
           <span>Move Right</span>
-          <img src="img/addPicture/arrow.png" />
+          <img class="arrowRight" src="img/addPicture/arrow.png" />
         </div>
       </div>
     </div>
 
-    <div id="newGame" class="newGame d-none" onclick="newGame()">
-      New Game?
-    </div>
-
+    <div id="newGame" class="newGame d-none" onclick="newGame()">New Game?</div>
   </body>
 </html>

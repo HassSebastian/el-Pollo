@@ -2,6 +2,10 @@ class Character extends MovableObject {
   height = 300;
   y = 30;
   speed = 5;
+  world;
+  isRealyDead = 0;
+  startAnimation = false;
+  idleAnimation = 0;
 
 
   IMAGES_Idle = [
@@ -72,11 +76,6 @@ class Character extends MovableObject {
     "img/2_character_pepe/4_hurt/H-43.png",
   ];
 
-
-  world;
-  isRealyDead = 0;
-  startAnimation = false;
-  idleAnimation = 0;
 
 
   constructor() {

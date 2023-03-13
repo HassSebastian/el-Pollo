@@ -1,5 +1,5 @@
 class Chicken_smal extends MovableObject {
-  y = 400;
+  y = 360;
   height = 60;
   width = 60;
   deadEnemy = false;

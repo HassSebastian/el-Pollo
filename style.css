@@ -21,6 +21,16 @@ canvas {
   display: block;
 }
 
+.turnDevice {
+  position: relative;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  font-weight: bold;
+  gap: 64px;
+}
+
 #startScreen {
   display: flex;
   flex-direction: column;
@@ -65,15 +75,28 @@ canvas {
   font-weight: bold;
 }
 
-.arrowUp img {
+.arrowUp {
   transform: rotate(90deg);
 }
 
-.arrowRight img {
+.arrowRight {
   transform: rotate(180deg);
 }
 
-.newGame{
+.canvasContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.touchButtons {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.newGame {
   position: absolute;
   top: 20%;
   font-weight: bold;
@@ -82,12 +105,12 @@ canvas {
   transition: 250ms ease-in-out;
 }
 
-.newGame:hover{
+.newGame:hover {
   transition: 250ms ease-in-out;
   transform: scale(1.5);
 }
 
-@media only screen and (max-width: 720px) {
+/* @media only screen and (max-width: 720px) {
   canvas,
   #startScreen {
     width: 100%;
@@ -99,4 +122,4 @@ canvas {
   #startScreen {
     height: 100%;
   }
-}
+} */

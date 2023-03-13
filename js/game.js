@@ -4,12 +4,25 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let realyGameOver = false;
 let realyGameOverCounter = 0;
-
+// let mobile = false;
 
 function init() {
+  viewportMobile();
+}
+
+function startGameNow() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
   gameOver();
+}
+
+async function playGame() {
+  await initLevel();
+  await setTimeout(startGameNow, 100);
+  document.getElementById("canvas").classList.remove("d-none");
+  document.getElementById("startScreen").classList.add("d-none");
+  document.getElementById("touchButtons").classList.remove("d-none");
+  document.getElementById("headLine").classList.add("d-none");
 }
 
 
@@ -45,13 +58,6 @@ window.addEventListener("keyup", (e) => {
 });
 
 
-async function playGame() {
-  await initLevel();
-  // init();
-  await setTimeout(init, 100);
-  document.getElementById("canvas").classList.remove("d-none");
-  document.getElementById("startScreen").classList.add("d-none");
-}
 
 
 function gameOver() {
@@ -65,4 +71,20 @@ function gameOver() {
 
 function newGame() {
   location.reload(true);
+}
+
+
+function viewportMobile() {
+  setInterval(() => {
+    if (window.innerWidth > window.innerHeight) {
+      // querformat
+      document.getElementById('canvasContainer').style = "width:100%;height:100%";
+      document.getElementById('canvas').style = "height:100% !important";
+    } else {
+      // hochformat
+      if (window.innerWidth < 720 || window.innerHeight < 480) {
+        document.getElementById('startScreen').classList.add('d-none');
+      }
+    }
+  }, 500);
 }
