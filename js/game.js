@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let realyGameOver = false;
 let realyGameOverCounter = 0;
-// let mobile = false;
+// let mobileView = false;
 
 function init() {
   viewportMobile();
@@ -65,7 +65,7 @@ function gameOver() {
     if (realyGameOver) {
       document.getElementById('newGame').classList.remove('d-none');
     }
-  }, 500);
+  }, 10);
 }
 
 
@@ -75,16 +75,30 @@ function newGame() {
 
 
 function viewportMobile() {
-  setInterval(() => {
+  requestAnimationFrame(() => {
     if (window.innerWidth > window.innerHeight) {
+      document.getElementById('startScreen').classList.remove('d-none');
+      document.getElementById('turnDevice').classList.add('d-none');
+
       // querformat
-      document.getElementById('canvasContainer').style = "width:100%;height:100%";
-      document.getElementById('canvas').style = "height:100% !important";
+      // document.getElementById('canvasContainer').style = "width:100%;height:100%";
+      // document.getElementById('canvas').style = "height:100%";
+      // document.getElementById('canvas').classList.remove('d-none')
+
     } else {
+      document.getElementById('startScreen').classList.add('d-none');
+      document.getElementById('turnDevice').classList.remove('d-none');
+
       // hochformat
-      if (window.innerWidth < 720 || window.innerHeight < 480) {
-        document.getElementById('startScreen').classList.add('d-none');
-      }
+      // if (window.innerWidth < 740 || window.innerHeight < 480) {
+      // document.getElementById('canvas').classList.add('d-none')
+      // mobileView = true;
+      // }
+      // if (mobile) {
+      //   document.getElementById('headline').classList.add('d-none');
+      // }
+
     }
-  }, 500);
+    viewportMobile();
+  });
 }

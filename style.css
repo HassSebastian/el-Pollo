@@ -86,6 +86,7 @@ canvas {
 .canvasContainer {
   display: flex;
   flex-direction: column;
+  order: 2;
 }
 
 .touchButtons {
@@ -108,6 +109,12 @@ canvas {
 .newGame:hover {
   transition: 250ms ease-in-out;
   transform: scale(1.5);
+}
+
+@media only screen and (max-width: 740px) {
+  #startScreen {
+    width: 100%;
+  }
 }
 
 /* @media only screen and (max-width: 720px) {
