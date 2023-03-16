@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,11 +37,11 @@
   </head>
 
   <body onload="init()">
-    <h1 id="headLine">El pollo loco</h1>
-    <div id="turnDevice" class="turnDevice">
+    <div id="turnDevice" class="turnDevice d-none">
       <img src="img/addPicture/turn-device.png" />
       <span>Turn Your Device</span>
     </div>
+
     <div id="canvasContainer" class="canvasContainer">
       <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
       <div id="touchButtons" class="touchButtons d-none">
@@ -51,18 +51,20 @@
         <img class="arrowRight" src="img/addPicture/arrow.png" />
       </div>
     </div>
-    <div id="startScreen" class="">
+
+    <div id="startScreen">
+      <img
+        id="startScreenImg"
+        src="img/9_intro_outro_screens/start/startscreen_1.png"
+      />
+
       <img
         id="playButton"
         src="img/addPicture/playButton.png"
         onclick="playGame()"
       />
-      <img
-        src="img/9_intro_outro_screens/start/startscreen_1.png"
-        width="720"
-        height="480"
-      />
-      <div class="footer">
+
+      <div id="footer" class="footer">
         <div>
           <span>Trow Bottle</span>
           <img src="img/addPicture/space.png" />

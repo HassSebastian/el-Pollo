@@ -3,11 +3,12 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin: 0;
   background-image: url("img/addPicture/desertBackground.png");
   background-position: center;
-  background-size: cover fit;
+  background-size: cover;
   background-repeat: no-repeat;
   font-family: Bubblegum Sans, sans-serif, serif;
 }
@@ -23,7 +24,7 @@ canvas {
 
 .turnDevice {
   position: relative;
-  top: 20%;
+  top: 0;
   display: flex;
   flex-direction: column;
   font-size: 30px;
@@ -36,14 +37,34 @@ canvas {
   flex-direction: column;
   align-items: center;
   width: 720px;
+  height: 480px;
+}
+
+#startScreenImg {
+  width: 720px;
+  height: 480px;
 }
 
 #playButton {
+  position: relative;
+  top: calc(-75% - (50px / 2));
   width: 50px;
   height: 50px;
   padding-bottom: 16px;
   cursor: pointer;
-  transition: 250ms ease-in-out;
+  animation: playButtonMove 1000ms linear infinite;
+}
+
+@keyframes playButtonMove {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.125);
+  }
+  100% {
+    transform: scale(1.25);
+  }
 }
 
 #playButton:hover {
@@ -55,14 +76,15 @@ canvas {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding-top: 16px;
+  position: relative;
+  top: -122px;
 }
 
 .footer div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .footer img {
@@ -90,8 +112,8 @@ canvas {
 }
 
 .touchButtons {
-  position: absolute;
-  bottom: 15px;
+  position: relative;
+  bottom: 45px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -111,22 +133,24 @@ canvas {
   transform: scale(1.5);
 }
 
-@media only screen and (max-width: 740px) {
-  #startScreen {
+@media only screen and (max-width: 720px) {
+  canvas,
+  .canvasContainer {
     width: 100%;
   }
-}
-
-/* @media only screen and (max-width: 720px) {
-  canvas,
-  #startScreen {
+  #startScreen,
+  #startScreenImg {
     width: 100%;
   }
 }
 
 @media only screen and (max-height: 480px) {
   canvas,
-  #startScreen {
+  .canvasContainer {
+    height: 100vh;
+  }
+  #startScreen,
+  #startScreenImg {
     height: 100%;
   }
-} */
+}

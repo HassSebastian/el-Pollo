@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let realyGameOver = false;
 let realyGameOverCounter = 0;
-// let mobileView = false;
+let playIndikator = false;
 
 function init() {
   viewportMobile();
@@ -21,8 +21,10 @@ async function playGame() {
   await setTimeout(startGameNow, 100);
   document.getElementById("canvas").classList.remove("d-none");
   document.getElementById("startScreen").classList.add("d-none");
+  document.getElementById("startScreenImg").classList.add("d-none");
+  document.getElementById("footer").classList.add("d-none");
   document.getElementById("touchButtons").classList.remove("d-none");
-  document.getElementById("headLine").classList.add("d-none");
+  playIndikator = true;
 }
 
 
@@ -58,8 +60,6 @@ window.addEventListener("keyup", (e) => {
 });
 
 
-
-
 function gameOver() {
   setInterval(() => {
     if (realyGameOver) {
@@ -70,6 +70,7 @@ function gameOver() {
 
 
 function newGame() {
+  playIndikator = false;
   location.reload(true);
 }
 
@@ -77,28 +78,30 @@ function newGame() {
 function viewportMobile() {
   requestAnimationFrame(() => {
     if (window.innerWidth > window.innerHeight) {
-      document.getElementById('startScreen').classList.remove('d-none');
-      document.getElementById('turnDevice').classList.add('d-none');
-
-      // querformat
-      // document.getElementById('canvasContainer').style = "width:100%;height:100%";
-      // document.getElementById('canvas').style = "height:100%";
-      // document.getElementById('canvas').classList.remove('d-none')
-
+      formatLandscape();
     } else {
-      document.getElementById('startScreen').classList.add('d-none');
-      document.getElementById('turnDevice').classList.remove('d-none');
-
-      // hochformat
-      // if (window.innerWidth < 740 || window.innerHeight < 480) {
-      // document.getElementById('canvas').classList.add('d-none')
-      // mobileView = true;
-      // }
-      // if (mobile) {
-      //   document.getElementById('headline').classList.add('d-none');
-      // }
-
+      formatPortrait();
     }
     viewportMobile();
   });
 }
+
+function formatLandscape() {
+  if (playIndikator) {
+    document.getElementById('canvas').classList.remove('d-none');
+    document.getElementById('touchButtons').classList.remove('d-none');
+  } else {
+    document.getElementById('startScreen').classList.remove('d-none');
+  }
+  document.getElementById('turnDevice').classList.add('d-none');
+}
+
+function formatPortrait() {
+  document.getElementById('startScreen').classList.add('d-none');
+  document.getElementById('turnDevice').classList.remove('d-none');
+  if (!(document.getElementById('canvas').classList.contains('d-none'))) {
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('touchButtons').classList.add('d-none');
+  }
+}
+
