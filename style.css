@@ -47,7 +47,7 @@ canvas {
 
 #playButton {
   position: relative;
-  top: calc(-75% - (50px / 2));
+  top: -345px;
   width: 50px;
   height: 50px;
   padding-bottom: 16px;
@@ -109,6 +109,8 @@ canvas {
   display: flex;
   flex-direction: column;
   order: 2;
+  width: 720px;
+  height: 480px;
 }
 
 .touchButtons {
