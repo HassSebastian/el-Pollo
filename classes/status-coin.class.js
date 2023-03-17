@@ -22,6 +22,14 @@ class StatusCoin extends DrawableObject {
   }
 
 
+  /**
+   * 
+   * Sets the percentage value of the health bar, bottle count, or coin count,
+   * and updates the corresponding image.
+   *
+   * @param {number} percentage - The percentage value to set (0-100).
+   * 
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_Coin[this.resolveImageIndex()];

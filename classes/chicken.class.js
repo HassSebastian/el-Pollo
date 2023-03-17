@@ -8,7 +8,7 @@ class Chicken extends MovableObject {
     top: 5,
     left: 5,
     right: 5,
-    bottom: 5
+    bottom: 0
   };
 
   IMAGES_Walking = [
@@ -35,17 +35,9 @@ class Chicken extends MovableObject {
     setStoppableInterval(() => {
       this.moveLeft();
     }, 1000 / 60);
-
-    setStoppableInterval(() => {
-      this.chicken_sound.play();
-      this.chicken_sound.volume = 0.2;
-    }, 1000);
-
     setStoppableInterval(() => {
       this.playAnimation(this.IMAGES_Walking);
-      if (this.isDead()) {
-        this.loadImage(this.IMMAGE_Die);
-      }
+      if (this.isDead()) this.loadImage(this.IMMAGE_Die);
     }, 100);
   }
 }

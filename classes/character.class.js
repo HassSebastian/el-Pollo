@@ -3,17 +3,15 @@ class Character extends MovableObject {
   y = 30;
   speed = 5;
   world;
-  isRealyDead = 0;
   startAnimation = false;
   idleAnimation = 0;
 
   offset = {
-    top: 100,
-    left: 15,
-    right: 15,
-    bottom: 10
+    top: 130,
+    left: 10,
+    right: 10,
+    bottom: 0
   };
-
 
 
   IMAGES_Idle = [
@@ -100,83 +98,172 @@ class Character extends MovableObject {
 
   animate() {
     setStoppableInterval(() => {
-      this.walking_sound.pause();
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-      }
-      if (this.world.keyboard.LEFT && this.x > -615) {
-        this.moveLeft();
-        this.otherDirection = true;
-        this.walking_sound.play();
-        this.walking_sound.volume = 0.2;
-      }
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
-        this.jump();
-        this.jump_sound.play();
-        this.jump_sound.volume = 0.2;
-      }
-      if (this.startAnimation) {
-        this.music_sound.play();
-        this.music_sound.volume = 0.2;
-      }
-      this.world.camera_x = -this.x + 100;
+      this.pepeMove();
     }, 1000 / 60);
-
-
     setStoppableInterval(() => {
-      if (this.isDead()) {
-        this.determineDeath();
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_Hurt);
-        this.hurt_sound.play();
-        this.hurt_sound.volume = 0.2;
-      } else if (this.isAboveGround() && this.startAnimation) {
-        this.playAnimation(this.IMAGES_Jumping);
-      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        this.playAnimation(this.IMAGES_Walking);
-        this.startAnimation = true;
-      }
-    }, 150);
-
-    setStoppableInterval(() => {
+      this.musicStart();
+      this.pepePsyche();
       this.idleness();
       this.isWin();
       this.isIdle();
       this.longIdle();
-    }, 200);
+    }, 150);
+  }
+
+  /**
+   * 
+   * moves the character when pressing a key
+   * 
+   */
+  pepeMove() {
+    this.walking_sound.pause();
+    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRight();
+    if (this.world.keyboard.LEFT && this.x > -615) this.moveLeftAndSound();
+    if (this.world.keyboard.UP && !this.isAboveGround()) this.jumpAndSound();
+    this.world.camera_x = -this.x + 100;
   }
 
 
+  /**
+   * 
+   * plays an animation depending on the psyche
+   * 
+   */
+  pepePsyche() {
+    if (this.isDead()) this.determineDeath();
+    else if (this.isHurt()) this.pepeHurt();
+    else if (this.isAboveGround() && this.startAnimation) this.playAnimation(this.IMAGES_Jumping);
+    else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+      this.playAnimation(this.IMAGES_Walking);
+      this.startAnimation = true;
+    }
+  }
+
+
+  musicStart() {
+    if (!this.isRealyDead) {
+      this.music_sound.play();
+      this.music_sound.volume = 0.2;
+      this.chicken_sound.play();
+      this.chicken_sound.volume = 0.07;
+    }
+  }
+
+
+  /**
+   *
+   * sets a counter to the game over animation
+   *  
+   */
   determineDeath() {
     if (this.isRealyDead <= 10) {
       this.playAnimation(this.IMAGES_IsDead);
       this.isRealyDead++;
     } else {
       this.loadImage(this.IMAGES_IsDead[6]);
-      this.dying_sound.play();
-      this.dying_sound.volume = 0.2;
-      if (realyGameOver) {
-        this.dying_sound.volume = 0;
-      }
+      if (!this.isRealyDead) this.pepeDyingSound();
     }
   }
 
 
+  /**
+   * 
+   * Plays the hurt animation and triggers the pepeHurtSound, 
+   * if the boss is not really dead.
+   * 
+   */
+  pepeHurt() {
+    this.playAnimation(this.IMAGES_Hurt);
+    if (!this.isRealyDead) this.pepeHurtSound();
+  }
+
+
+  /**
+   * 
+   * Plays the hurt_sound with a volume of 0.2.
+   * 
+   */
+  pepeHurtSound() {
+    this.hurt_sound.play();
+    this.hurt_sound.volume = 0.2;
+  }
+
+
+  /**
+   * 
+   * Moves the boss to the left and triggers the pepeWalkSound, 
+   * if the boss is not really dead.
+   * 
+   */
+  moveLeftAndSound() {
+    this.moveLeft();
+    this.otherDirection = true;
+    if (!this.isRealyDead) this.pepeWalkSound();
+  }
+
+
+  /**
+   * 
+   *  Plays the walking_sound with a volume of 0.2.
+   * 
+   */
+  pepeWalkSound() {
+    this.walking_sound.play();
+    this.walking_sound.volume = 0.2;
+  }
+
+
+  /**
+   * 
+   * Makes the boss jump and triggers the pepeJumpSound, if the boss is not really dead.
+   * 
+   */
+  jumpAndSound() {
+    this.jump();
+    if (!this.isRealyDead) this.pepeJumpSound();
+  }
+
+
+  /**
+   * 
+   * Plays the jump_sound with a volume of 0.2.
+   * 
+   */
+  pepeJumpSound() {
+    this.jump_sound.play();
+    this.jump_sound.volume = 0.2;
+  }
+
+
+  /**
+   * 
+   * Plays the dying_sound with a volume of 0.2.
+   * 
+   */
+  pepeDyingSound() {
+    this.dying_sound.play();
+    this.dying_sound.volume = 0.2;
+  }
+
+
+  /**
+   * 
+   * Makes the boss character jump by setting its vertical speed to 30.
+   * 
+   */
   jump() {
     this.speedY = 30;
   }
 
 
+  /**
+   * 
+   * If the character is idle, it will update the idleGroundPosition and idleAnimation properties.
+   * Otherwise, it will reset the idleAnimation property to 0.
+   * 
+   */
   idleness() {
-    if (
-      !this.world.keyboard.RIGHT &&
-      !this.world.keyboard.LEFT &&
-      !this.world.keyboard.UP &&
-      !this.world.keyboard.SPACE &&
-      !this.isHurt() &&
-      !this.isDead() &&
-      !this.isAboveGround()
-    ) {
+    if (this.pepeIdleness()) {
       this.idleGroundPosition();
       this.idleAnimation++;
     } else {
@@ -184,12 +271,34 @@ class Character extends MovableObject {
     }
   }
 
+
+  /**
+   * Checks if Pepe is currently idle based on keyboard input and his current state.
+   *
+   * @returns {boolean} True if Pepe is idle, false otherwise.
+   */
+  pepeIdleness() {
+    return !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead() && !this.isAboveGround();
+  }
+
+
+  /**
+   * 
+   * Loads the image for the ground idle position if the idle animation has been running for less than 30 frames.
+   * 
+   */
   idleGroundPosition() {
     if (this.idleAnimation < 30) {
       this.loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
     }
   }
 
+
+  /**
+   * 
+   * Checks if the idle animation has been running for at least 30 frames and plays the idle animation if so.
+   * 
+   */
   isIdle() {
     if (this.idleAnimation >= 30) {
       this.playAnimation(this.IMAGES_Idle);
@@ -197,14 +306,26 @@ class Character extends MovableObject {
   }
 
 
+  /**
+   * 
+   * Plays a long idle animation and snoring sound if the idle animation has been running for at least 60 frames.
+   * 
+   */
   longIdle() {
     if (this.idleAnimation >= 60) {
       this.playAnimation(this.IMAGES_Long_Idle);
-      this.snoring_sound.play();
+      if (!this.isRealyDead) {
+        this.snoring_sound.play();
+      }
     }
   }
 
 
+  /**
+   * 
+   * plays the win animation and sound
+   * 
+   */
   isWin() {
     if (this.winAnimation() && !this.isAboveGround()) {
       this.jump();

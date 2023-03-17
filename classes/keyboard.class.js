@@ -7,10 +7,14 @@ class Keyboard {
   constructor() {
     this.pressKeboardEventTrue();
     this.pressKeboardEventFalse();
-    // setTimeout(this.pressBtnEvent, 3000);
   }
 
 
+  /**
+   * 
+   * Removes the key event listener for key release and sets the corresponding boolean properties to true.   
+   *  
+   */
   pressKeboardEventTrue() {
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == 39) {
@@ -29,6 +33,11 @@ class Keyboard {
   }
 
 
+  /**
+   * 
+   * Removes the key event listener for key release and sets the corresponding boolean properties to false.
+   * 
+   */
   pressKeboardEventFalse() {
     window.addEventListener("keyup", (e) => {
       if (e.keyCode == 39) {
@@ -45,4 +54,6 @@ class Keyboard {
       }
     });
   }
+
+
 }

@@ -32,6 +32,11 @@ class ThrowableObject extends MovableObject {
   }
 
 
+  /**
+   * 
+   * Throws the object with a specific speed and applies gravity.
+   * 
+   */
   trow() {
     this.speedY = 30;
     this.applyGravity();
@@ -41,18 +46,31 @@ class ThrowableObject extends MovableObject {
   }
 
 
+  /**
+   * 
+   * Animates the bottle's throwing action and plays animation/sound based on its position
+   * 
+   * @returns {number} - The ID of the interval timer used to animate the bottle
+   * 
+   */
   animate() {
     let throwable = setStoppableInterval(() => {
-      if (this.y > 300) {
-        this.playAnimation(this.IMMAGES_Bottles_Splash);
-      } else {
-        this.playAnimation(this.IMMAGES_Bottles_Rotation);
-        this.throw_sound.play();
-        this.throw_sound.volume = 0.2;
-      }
-      if (this.y > 320) {
-        clearInterval(throwable);
-      }
+      if (this.y > 300) this.playAnimation(this.IMMAGES_Bottles_Splash);
+      else this.bottleThrowAnimationAndSound();
+      if (this.y > 320) clearInterval(throwable);
     }, 50);
+  }
+
+
+  /**
+   * 
+   * Plays the bottle rotation animation and throw sound effect.
+   * Used during the bottle throwing animation.
+   * 
+   */
+  bottleThrowAnimationAndSound() {
+    this.playAnimation(this.IMMAGES_Bottles_Rotation);
+    this.throw_sound.play();
+    this.throw_sound.volume = 0.2;
   }
 }

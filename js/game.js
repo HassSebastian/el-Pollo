@@ -14,19 +14,11 @@ function init() {
 }
 
 
-/** Start and Play **
- * 
- * 
- * 
- * 
- */
-function startGameNow() {
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
-  gameOver();
-}
-
-
+/********** Start and Play **********
+*
+* Initializes the level
+*
+*/
 async function playGame() {
   await initLevel();
   await setTimeout(startGameNow, 100);
@@ -40,9 +32,22 @@ async function playGame() {
 }
 
 
-
-/** Mobil Buttons **
+/**
  * 
+ * start the game
+ * 
+ */
+function startGameNow() {
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
+  gameOver();
+}
+
+
+/*********** Mobil Buttons ***********
+ * 
+ * Attaches touchstart event listeners to the arrow and space buttons, 
+ * and sets the corresponding keyboard properties to true
  * 
  */
 function pressBtnEveTrue() {
@@ -65,6 +70,12 @@ function pressBtnEveTrue() {
 }
 
 
+/**
+ * 
+ * Attaches touchstart event listeners to the arrow and space buttons, 
+ * and sets the corresponding keyboard properties to false
+ * 
+ */
 function pressBtnEveFalse() {
   document.getElementById('upBtn').addEventListener('touchend', (e) => {
     e.preventDefault();
@@ -85,11 +96,11 @@ function pressBtnEveFalse() {
 }
 
 
-
-/** Desktop - Mobil - Check **
- * 
- * 
- * 
+/********** Desktop - Mobil - Check **********
+ *
+ * Checks if the current device is mobile and calls yesMobil() if it is. 
+ * If not, calls noMobil() if the game is currently being played.
+ *
  */
 function viewportMobile() {
   requestAnimationFrame(() => {
@@ -103,6 +114,11 @@ function viewportMobile() {
 }
 
 
+/**
+ * 
+ * Formats the game layout for mobile devices in landscape or portrait mode
+ * 
+ */
 function yesMobil() {
   if (window.innerWidth > window.innerHeight) {
     formatLandscape();
@@ -112,6 +128,11 @@ function yesMobil() {
 }
 
 
+/**
+ * 
+ * Formats the game layout for non-mobile devices.
+ * 
+ */
 function noMobil() {
   if (window.innerWidth < 720) {
     document.getElementById('canvasContainer').style = "width: 100%;";
@@ -121,6 +142,11 @@ function noMobil() {
 }
 
 
+/**
+ * 
+ * Formats the game layout for landscape mode on mobile devices.
+ * 
+ */
 function formatLandscape() {
   if (playIndikator) {
     document.getElementById('canvasContainer').style = "width: 100%;height: 100vh;display:block";
@@ -135,6 +161,11 @@ function formatLandscape() {
 }
 
 
+/**
+ * 
+ * Formats the game layout for portrait mode on mobile devices.
+ * 
+ */
 function formatPortrait() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('turnDevice').classList.remove('d-none');
@@ -145,12 +176,14 @@ function formatPortrait() {
 }
 
 
-/** GameOver Fuction **
+/********** GameOver Fuction **********
  * 
+ * Sets a recurring timeout that can be stopped by calling the stop() method.
  * 
+ * @function
+ * @param {function} fn - The function to be called at each interval.
+ * @param {number} time - The time in milliseconds between each interval.
  * 
- * @param {*} fn 
- * @param {*} time 
  */
 function setStoppableInterval(fn, time) {
   let id = setInterval(fn, time);
@@ -158,11 +191,21 @@ function setStoppableInterval(fn, time) {
 }
 
 
+/**
+ * 
+ * Stops all recurring timeouts set by the setStoppableInterval function.
+ * 
+ */
 function stopGame() {
   intervalIds.forEach(clearInterval);
 }
 
 
+/**
+ * 
+ * Sets a recurring interval to check if the game is over, and shows the "New Game" button if it is.
+ * 
+ */
 function gameOver() {
   setStoppableInterval(() => {
     if (realyGameOver) {
@@ -173,6 +216,25 @@ function gameOver() {
 }
 
 
+/**
+* 
+* Generates a random number between 0 and 2 (inclusive) to select a game over image.
+
+* @function
+* @returns {number} A random number between 0 and 2 (inclusive). 
+*
+*/
+function randomGameOverImg() {
+  let result = Math.floor(Math.random() * 3);
+  return result;
+}
+
+
+/**
+ * 
+ * reset all variables and canvas
+ * 
+ */
 function newGame() {
   playIndikator = false;
   canvas.getContext("2d").clearRect(0, 0, 720, 480);
@@ -186,9 +248,3 @@ function newGame() {
   document.getElementById("footer").classList.remove("d-none");
 }
 
-
-function randomGameOverImg() {
-  let result = Math.floor(Math.random() * 4);
-  console.log(result);
-  // return result;
-}

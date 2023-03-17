@@ -57,55 +57,81 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_Attack);
     this.loadImages(this.IMAGES_Hurt);
     this.loadImages(this.IMAGES_Dead);
-    this.x = 2500; //2500
+    this.x = 2500;
     this.animate();
     this.speed = 4;
   }
 
 
+  /**
+   * 
+   * Animates the character during a fight sequence.
+   *
+   */
   animate() {
     setStoppableInterval(() => {
-      if (this.isDead()) {
-        this.isDeadInFight();
-      } else if (this.isHurt()) {
-        this.isHurtInFight();
-      } else if (this.energy > 0) {
-        this.contactWithCharacter();
-      } else {
-        this.playAnimation(this.IMAGES_Alert);
-      }
+      if (this.isDead()) this.isDeadInFight();
+      else if (this.isHurt()) this.isHurtInFight();
+      else if (this.energy > 0) this.contactWithCharacter();
+      else this.playAnimation(this.IMAGES_Alert);
     }, 100);
   }
 
 
+  /**
+   * 
+   * Stops the character's movement and plays the dead animation.
+   *
+   */
   isDeadInFight() {
     this.speed = 0;
     this.playAnimation(this.IMAGES_Dead);
   }
 
 
+  /**
+   * 
+   * Plays the hurt animation and ends the boss hit sound (if not already dead).
+   *
+   */
   isHurtInFight() {
     this.playAnimation(this.IMAGES_Hurt);
+    if (!this.isRealyDead) this.endBossHitSound();
+  }
+
+
+  /**
+   * 
+   * play hit sound
+   * 
+   */
+  endBossHitSound() {
     this.hitBoss_sound.play();
     this.hitBoss_sound.volume = 0.2;
   }
 
 
+  /**
+   * 
+   * Handles the boss's behavior when in contact with the character.
+   *
+   */
   contactWithCharacter() {
-    if (this.characterIsDead()) {
-      this.winWalk();
-    } else if (this.diffrentBossToCharacter() < -20) {
-      this.turnAndFight();
-    } else if (this.diffrentBossToCharacter() < 250) {
-      this.fastAttack();
-    } else if (this.diffrentBossToCharacter() <= 400) {
-      this.relaxToFight();
-    } else if (this.diffrentBossToCharacter() > 400) {
-      this.relaxAndWalk();
-    }
+    if (this.characterIsDead()) this.winWalk();
+    else if (this.diffrentBossToCharacter() < -20) this.turnAndFight();
+    else if (this.diffrentBossToCharacter() < 250) this.fastAttack();
+    else if (this.diffrentBossToCharacter() <= 400) this.relaxToFight();
+    else if (this.diffrentBossToCharacter() > 400) this.relaxAndWalk();
   }
 
 
+  /**
+   * 
+   * Sets the boss's speed to 15, moves it right, 
+   * changes its direction, 
+   * and plays the walking animation.
+   * 
+   */
   winWalk() {
     this.speed = 15;
     this.moveRight();
@@ -114,30 +140,55 @@ class Endboss extends MovableObject {
   }
 
 
+  /**
+   * 
+   * Plays the attack animation, sets the boss's speed to 25, 
+   * moves it right, changes its direction, 
+   * and plays the spawnBoss sound (if not already dead)
+   * 
+   */
   turnAndFight() {
     this.playAnimation(this.IMAGES_Attack);
     this.moveRight();
     this.speed = 25;
     this.otherDirection = true;
-    this.spawnBoss_sound.play();
+    if (!this.isRealyDead) this.spawnBoss_sound.play();
   }
 
 
+  /**
+   * 
+   * Plays the attack animation, sets the boss's speed to 15, 
+   * moves it left, changes its direction, 
+   * and plays the spawnBoss sound (if not already dead).
+   * 
+   */
   fastAttack() {
     this.playAnimation(this.IMAGES_Attack);
     this.moveLeft();
     this.speed = 15;
     this.otherDirection = false;
-    this.spawnBoss_sound.play();
+    if (!this.isRealyDead) this.spawnBoss_sound.play();
   }
 
 
+  /**
+   * 
+   * Plays the walking animation and moves the boss left.
+   * 
+   */
   relaxToFight() {
     this.playAnimation(this.IMAGES_Walking);
     this.moveLeft();
   }
 
 
+  /**
+   * 
+   * Plays the walking animation, sets the boss's speed to 4, 
+   * and moves it left. 
+   * 
+   */
   relaxAndWalk() {
     this.playAnimation(this.IMAGES_Walking);
     this.moveLeft();

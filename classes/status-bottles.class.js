@@ -22,6 +22,13 @@ class StautusBottles extends DrawableObject {
   }
 
 
+  /**
+   * 
+   * Sets the health percentage of the object and updates its image.
+   * 
+   * @param {number} percentage - The new health percentage value.
+   * 
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_Bottle[this.resolveImageIndex()];

@@ -23,6 +23,13 @@ class StatusEndBoss extends DrawableObject {
   }
 
 
+  /**
+   * 
+   * Sets the percentage of the health bar for the end boss character.
+   * 
+   * @param {number} percentage - The percentage of the health bar to set, from 0 to 100.
+   * 
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES_EndBoss[this.resolveImageIndex()];
