@@ -5,12 +5,13 @@ class Keyboard {
   SPACE = false;
 
   constructor() {
-    this.pressKeboardEvent();
+    this.pressKeboardEventTrue();
+    this.pressKeboardEventFalse();
     // setTimeout(this.pressBtnEvent, 3000);
   }
 
 
-  pressKeboardEvent() {
+  pressKeboardEventTrue() {
     window.addEventListener("keydown", (e) => {
       if (e.keyCode == 39) {
         this.RIGHT = true;
@@ -25,7 +26,10 @@ class Keyboard {
         this.SPACE = true;
       }
     });
+  }
 
+
+  pressKeboardEventFalse() {
     window.addEventListener("keyup", (e) => {
       if (e.keyCode == 39) {
         this.RIGHT = false;
@@ -40,7 +44,5 @@ class Keyboard {
         this.SPACE = false;
       }
     });
-
   }
-
 }

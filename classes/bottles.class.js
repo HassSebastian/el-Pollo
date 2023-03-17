@@ -3,6 +3,13 @@ class Bottles extends DrawableObject {
   width = 80;
   y = 340;
 
+  offset = {
+    top: 30,
+    left: 50,
+    right: 50,
+    bottom: 20
+  };
+
 
   constructor() {
     super().loadImage("img/6_salsa_bottle/1_salsa_bottle_on_ground.png");

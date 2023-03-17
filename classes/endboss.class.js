@@ -64,7 +64,7 @@ class Endboss extends MovableObject {
 
 
   animate() {
-    setInterval(() => {
+    setStoppableInterval(() => {
       if (this.isDead()) {
         this.isDeadInFight();
       } else if (this.isHurt()) {

@@ -27,7 +27,6 @@ class ThrowableObject extends MovableObject {
     this.y = y;
     this.height = 60;
     this.width = 50;
-
     this.trow();
     this.animate();
   }
@@ -36,14 +35,14 @@ class ThrowableObject extends MovableObject {
   trow() {
     this.speedY = 30;
     this.applyGravity();
-    setInterval(() => {
+    setStoppableInterval(() => {
       this.x += 8;
     }, 25);
   }
 
 
   animate() {
-    let throwable = setInterval(() => {
+    let throwable = setStoppableInterval(() => {
       if (this.y > 300) {
         this.playAnimation(this.IMMAGES_Bottles_Splash);
       } else {

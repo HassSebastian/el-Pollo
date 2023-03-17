@@ -4,6 +4,12 @@ class Chicken extends MovableObject {
   width = 90;
   deadEnemy = false;
 
+  offset = {
+    top: 5,
+    left: 5,
+    right: 5,
+    bottom: 5
+  };
 
   IMAGES_Walking = [
     "img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
@@ -26,16 +32,16 @@ class Chicken extends MovableObject {
 
 
   animate() {
-    setInterval(() => {
+    setStoppableInterval(() => {
       this.moveLeft();
     }, 1000 / 60);
 
-    setInterval(() => {
+    setStoppableInterval(() => {
       this.chicken_sound.play();
       this.chicken_sound.volume = 0.2;
     }, 1000);
 
-    setInterval(() => {
+    setStoppableInterval(() => {
       this.playAnimation(this.IMAGES_Walking);
       if (this.isDead()) {
         this.loadImage(this.IMMAGE_Die);

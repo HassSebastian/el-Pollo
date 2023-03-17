@@ -1,17 +1,25 @@
 let canvas;
+let intervalIds = [];
 let world;
 let keyboard = new Keyboard();
-let intervalIds = [];
 let realyGameOver = false;
 let realyGameOverCounter = 0;
 let playIndikator = false;
 
+
 function init() {
   viewportMobile();
-  pressBtnEve();
+  pressBtnEveTrue();
+  pressBtnEveFalse();
 }
 
 
+/** Start and Play **
+ * 
+ * 
+ * 
+ * 
+ */
 function startGameNow() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
@@ -32,16 +40,12 @@ async function playGame() {
 }
 
 
-function gameOver() {
-  setInterval(() => {
-    if (realyGameOver) {
-      document.getElementById('newGame').classList.remove('d-none');
-    }
-  }, 10);
-}
 
-
-function pressBtnEve() {
+/** Mobil Buttons **
+ * 
+ * 
+ */
+function pressBtnEveTrue() {
   document.getElementById('upBtn').addEventListener('touchstart', (e) => {
     e.preventDefault();
     keyboard.UP = true;
@@ -58,8 +62,10 @@ function pressBtnEve() {
     e.preventDefault();
     keyboard.RIGHT = true;
   });
+}
 
 
+function pressBtnEveFalse() {
   document.getElementById('upBtn').addEventListener('touchend', (e) => {
     e.preventDefault();
     keyboard.UP = false;
@@ -79,12 +85,12 @@ function pressBtnEve() {
 }
 
 
-function newGame() {
-  playIndikator = false;
-  location.reload(true);
-}
 
-
+/** Desktop - Mobil - Check **
+ * 
+ * 
+ * 
+ */
 function viewportMobile() {
   requestAnimationFrame(() => {
     if (/Mobil/.test(navigator.userAgent)) {
@@ -138,3 +144,51 @@ function formatPortrait() {
   }
 }
 
+
+/** GameOver Fuction **
+ * 
+ * 
+ * 
+ * @param {*} fn 
+ * @param {*} time 
+ */
+function setStoppableInterval(fn, time) {
+  let id = setInterval(fn, time);
+  intervalIds.push(id);
+}
+
+
+function stopGame() {
+  intervalIds.forEach(clearInterval);
+}
+
+
+function gameOver() {
+  setStoppableInterval(() => {
+    if (realyGameOver) {
+      document.getElementById('newGame').classList.remove('d-none');
+      stopGame();
+    }
+  }, 10);
+}
+
+
+function newGame() {
+  playIndikator = false;
+  canvas.getContext("2d").clearRect(0, 0, 720, 480);
+  intervalIds = [];
+  realyGameOver = false;
+  document.getElementById("canvasContainer").classList.add("d-none");
+  document.getElementById("canvas").classList.add("d-none");
+  document.getElementById("newGame").classList.add("d-none");
+  document.getElementById("startScreen").classList.remove("d-none");
+  document.getElementById("startScreenImg").classList.remove("d-none");
+  document.getElementById("footer").classList.remove("d-none");
+}
+
+
+function randomGameOverImg() {
+  let result = Math.floor(Math.random() * 4);
+  console.log(result);
+  // return result;
+}

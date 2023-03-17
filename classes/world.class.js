@@ -13,11 +13,6 @@ class World {
   throwableObject = [];
 
 
-  /**
-   * 
-   * @param {*} canvas 
-   * @param {*} keyboard 
-   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -34,7 +29,7 @@ class World {
 
 
   run() {
-    setInterval(() => {
+    setStoppableInterval(() => {
       this.checkCollision();
       this.checkThroObjects();
     }, 300);
@@ -62,8 +57,20 @@ class World {
   }
 
 
+
+  /** CheckCollision **
+   * 
+   * 
+   */
   checkCollision() {
-    // zusammenstoß mit einem enemy beim laufen
+    this.collisionWithEnemyWhileWorking();
+    this.bottleLooting();
+    this.coinLooting();
+    this.endBossHit();
+  }
+
+
+  collisionWithEnemyWhileWorking() {
     this.level.enemies.forEach((enemy) => {
       if (
         (this.character.isColliding(enemy) &&
@@ -83,21 +90,30 @@ class World {
         this.character.isCollidingFromUp(enemy);
       }
     });
-    // flaschen einsammeln
+  }
+
+
+  bottleLooting() {
     this.level.bottles.forEach((bottles) => {
       if (this.character.isColliding(bottles)) {
         this.statusBottles.setPercentage(this.character.salsa_bottles);
         this.character.collisionWithBottles(bottles);
       }
     });
-    // coins einsammeln
+  }
+
+
+  coinLooting() {
     this.level.coins.forEach((coins) => {
       if (this.character.isColliding(coins)) {
         this.statusCoin.setPercentage(this.character.coin);
         this.character.collisionWithCoin(coins);
       }
     });
-    // Endbossschaden durch flasche
+  }
+
+
+  endBossHit() {
     this.throwableObject.forEach((bottle) => {
       if (this.level.enemies[0].isColliding(bottle)) {
         this.level.enemies[0].hit();
@@ -108,6 +124,9 @@ class World {
   }
 
 
+  /** Draw **
+   * 
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -164,6 +183,9 @@ class World {
   }
 
 
+  /** System Fuction **
+   * 
+   */
   drawRepeat() {
     let self = this;
     let drawAnimation = requestAnimationFrame(() => {
@@ -204,5 +226,6 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
 
 }
