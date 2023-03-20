@@ -8,9 +8,9 @@ let playIndikator = false;
 
 
 function init() {
-  viewportMobile();
-  pressBtnEveTrue();
-  pressBtnEveFalse();
+  // viewportMobile();
+  // pressBtnEveTrue();
+  // pressBtnEveFalse();
 }
 
 
@@ -21,13 +21,13 @@ function init() {
 */
 async function playGame() {
   await initLevel();
-  await setTimeout(startGameNow, 100);
-  document.getElementById("canvasContainer").classList.remove("d-none");
-  document.getElementById("canvas").classList.remove("d-none");
-  document.getElementById("startScreen").classList.add("d-none");
-  document.getElementById("startScreenImg").classList.add("d-none");
-  document.getElementById("footer").classList.add("d-none");
-  document.getElementById("touchButtons").classList.remove("d-none");
+  // await setTimeout(startGameNow, 100);
+  // document.getElementById("canvasContainer").classList.remove("d-none");
+  // document.getElementById("canvas").classList.remove("d-none");
+  // document.getElementById("startScreen").classList.add("d-none");
+  // document.getElementById("startScreenImg").classList.add("d-none");
+  // document.getElementById("footer").classList.add("d-none");
+  // document.getElementById("touchButtons").classList.remove("d-none");
   playIndikator = true;
 }
 
@@ -50,24 +50,24 @@ function startGameNow() {
  * and sets the corresponding keyboard properties to true
  * 
  */
-function pressBtnEveTrue() {
-  document.getElementById('upBtn').addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    keyboard.UP = true;
-  });
-  document.getElementById('spaceBtn').addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    keyboard.SPACE = true;
-  });
-  document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    keyboard.LEFT = true;
-  });
-  document.getElementById('rightBtn').addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    keyboard.RIGHT = true;
-  });
-}
+// function pressBtnEveTrue() {
+//   document.getElementById('upBtn').addEventListener('touchstart', (e) => {
+//     e.preventDefault();
+//     keyboard.UP = true;
+//   });
+//   document.getElementById('spaceBtn').addEventListener('touchstart', (e) => {
+//     e.preventDefault();
+//     keyboard.SPACE = true;
+//   });
+//   document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
+//     e.preventDefault();
+//     keyboard.LEFT = true;
+//   });
+//   document.getElementById('rightBtn').addEventListener('touchstart', (e) => {
+//     e.preventDefault();
+//     keyboard.RIGHT = true;
+//   });
+// }
 
 
 /**
@@ -76,24 +76,24 @@ function pressBtnEveTrue() {
  * and sets the corresponding keyboard properties to false
  * 
  */
-function pressBtnEveFalse() {
-  document.getElementById('upBtn').addEventListener('touchend', (e) => {
-    e.preventDefault();
-    keyboard.UP = false;
-  });
-  document.getElementById('spaceBtn').addEventListener('touchend', (e) => {
-    e.preventDefault();
-    keyboard.SPACE = false;
-  });
-  document.getElementById('leftBtn').addEventListener('touchend', (e) => {
-    e.preventDefault();
-    keyboard.LEFT = false;
-  });
-  document.getElementById('rightBtn').addEventListener('touchend', (e) => {
-    e.preventDefault();
-    keyboard.RIGHT = false;
-  });
-}
+// function pressBtnEveFalse() {
+//   document.getElementById('upBtn').addEventListener('touchend', (e) => {
+//     e.preventDefault();
+//     keyboard.UP = false;
+//   });
+//   document.getElementById('spaceBtn').addEventListener('touchend', (e) => {
+//     e.preventDefault();
+//     keyboard.SPACE = false;
+//   });
+//   document.getElementById('leftBtn').addEventListener('touchend', (e) => {
+//     e.preventDefault();
+//     keyboard.LEFT = false;
+//   });
+//   document.getElementById('rightBtn').addEventListener('touchend', (e) => {
+//     e.preventDefault();
+//     keyboard.RIGHT = false;
+//   });
+// }
 
 
 /********** Desktop - Mobil - Check **********

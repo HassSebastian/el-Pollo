@@ -10,6 +10,7 @@ class World {
   statusCoin = new StatusCoin();
   statusEndBoss = new StatusEndBoss();
   gameOver = new GameOver();
+  startScreen = new StartScreen();
   throwableObject = [];
 
 
@@ -225,12 +226,17 @@ class World {
    */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.translate(this.camera_x, 0);
-    this.drawBackground();
-    this.drawStatusBars();
-    this.drawCharacter();
-    this.drawLevelObjects();
-    this.ctx.translate(-this.camera_x, 0);
+    if (!this.playIndikator) {
+      this.ctx.translate(this.camera_x, 0);
+      this.drawBackground();
+      this.drawStatusBars();
+      this.drawCharacter();
+      this.drawLevelObjects();
+      this.ctx.translate(-this.camera_x, 0);
+    } else {
+      console.log('ok');
+      this.addObjectsToMap(this.startScreen);
+    }
     this.drawRepeat();
   }
 

@@ -101,7 +101,7 @@ class Character extends MovableObject {
       this.pepeMove();
     }, 1000 / 60);
     setStoppableInterval(() => {
-      this.musicStart();
+      // this.musicStart();
       this.pepePsyche();
       this.idleness();
       this.isWin();
@@ -116,7 +116,7 @@ class Character extends MovableObject {
    * 
    */
   pepeMove() {
-    this.walking_sound.pause();
+    // this.walking_sound.pause();
     if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) this.moveRight();
     if (this.world.keyboard.LEFT && this.x > -615) this.moveLeftAndSound();
     if (this.world.keyboard.UP && !this.isAboveGround()) this.jumpAndSound();
@@ -140,14 +140,14 @@ class Character extends MovableObject {
   }
 
 
-  musicStart() {
-    if (!this.isRealyDead) {
-      this.music_sound.play();
-      this.music_sound.volume = 0.2;
-      this.chicken_sound.play();
-      this.chicken_sound.volume = 0.07;
-    }
-  }
+  // musicStart() {
+  //   if (!this.isRealyDead) {
+  //     this.music_sound.play();
+  //     this.music_sound.volume = 0.2;
+  //     this.chicken_sound.play();
+  //     this.chicken_sound.volume = 0.07;
+  //   }
+  // }
 
 
   /**
@@ -161,7 +161,7 @@ class Character extends MovableObject {
       this.isRealyDead++;
     } else {
       this.loadImage(this.IMAGES_IsDead[6]);
-      if (!this.isRealyDead) this.pepeDyingSound();
+      // if (!this.isRealyDead) this.pepeDyingSound();
     }
   }
 
@@ -174,7 +174,7 @@ class Character extends MovableObject {
    */
   pepeHurt() {
     this.playAnimation(this.IMAGES_Hurt);
-    if (!this.isRealyDead) this.pepeHurtSound();
+    // if (!this.isRealyDead) this.pepeHurtSound();
   }
 
 
@@ -183,10 +183,10 @@ class Character extends MovableObject {
    * Plays the hurt_sound with a volume of 0.2.
    * 
    */
-  pepeHurtSound() {
-    this.hurt_sound.play();
-    this.hurt_sound.volume = 0.2;
-  }
+  // pepeHurtSound() {
+  //   this.hurt_sound.play();
+  //   this.hurt_sound.volume = 0.2;
+  // }
 
 
   /**
@@ -198,7 +198,7 @@ class Character extends MovableObject {
   moveLeftAndSound() {
     this.moveLeft();
     this.otherDirection = true;
-    if (!this.isRealyDead) this.pepeWalkSound();
+    // if (!this.isRealyDead) this.pepeWalkSound();
   }
 
 
@@ -207,10 +207,10 @@ class Character extends MovableObject {
    *  Plays the walking_sound with a volume of 0.2.
    * 
    */
-  pepeWalkSound() {
-    this.walking_sound.play();
-    this.walking_sound.volume = 0.2;
-  }
+  // pepeWalkSound() {
+  //   this.walking_sound.play();
+  //   this.walking_sound.volume = 0.2;
+  // }
 
 
   /**
@@ -220,7 +220,7 @@ class Character extends MovableObject {
    */
   jumpAndSound() {
     this.jump();
-    if (!this.isRealyDead) this.pepeJumpSound();
+    // if (!this.isRealyDead) this.pepeJumpSound();
   }
 
 
@@ -229,10 +229,10 @@ class Character extends MovableObject {
    * Plays the jump_sound with a volume of 0.2.
    * 
    */
-  pepeJumpSound() {
-    this.jump_sound.play();
-    this.jump_sound.volume = 0.2;
-  }
+  // pepeJumpSound() {
+  //   this.jump_sound.play();
+  //   this.jump_sound.volume = 0.2;
+  // }
 
 
   /**
@@ -240,10 +240,10 @@ class Character extends MovableObject {
    * Plays the dying_sound with a volume of 0.2.
    * 
    */
-  pepeDyingSound() {
-    this.dying_sound.play();
-    this.dying_sound.volume = 0.2;
-  }
+  // pepeDyingSound() {
+  //   this.dying_sound.play();
+  //   this.dying_sound.volume = 0.2;
+  // }
 
 
   /**
@@ -314,9 +314,9 @@ class Character extends MovableObject {
   longIdle() {
     if (this.idleAnimation >= 60) {
       this.playAnimation(this.IMAGES_Long_Idle);
-      if (!this.isRealyDead) {
-        this.snoring_sound.play();
-      }
+      // if (!this.isRealyDead) {
+      //   this.snoring_sound.play();
+      // }
     }
   }
 
@@ -329,9 +329,9 @@ class Character extends MovableObject {
   isWin() {
     if (this.winAnimation() && !this.isAboveGround()) {
       this.jump();
-      if (!realyGameOver) {
-        this.win_sound.play();
-      }
+      // if (!realyGameOver) {
+      //   this.win_sound.play();
+      // }
     }
   }
 }

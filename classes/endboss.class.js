@@ -96,7 +96,7 @@ class Endboss extends MovableObject {
    */
   isHurtInFight() {
     this.playAnimation(this.IMAGES_Hurt);
-    if (!this.isRealyDead) this.endBossHitSound();
+    // if (!this.isRealyDead) this.endBossHitSound();
   }
 
 
@@ -105,10 +105,10 @@ class Endboss extends MovableObject {
    * play hit sound
    * 
    */
-  endBossHitSound() {
-    this.hitBoss_sound.play();
-    this.hitBoss_sound.volume = 0.2;
-  }
+  // endBossHitSound() {
+  //   this.hitBoss_sound.play();
+  //   this.hitBoss_sound.volume = 0.2;
+  // }
 
 
   /**
@@ -152,7 +152,7 @@ class Endboss extends MovableObject {
     this.moveRight();
     this.speed = 25;
     this.otherDirection = true;
-    if (!this.isRealyDead) this.spawnBoss_sound.play();
+    // if (!this.isRealyDead) this.spawnBoss_sound.play();
   }
 
 
@@ -168,7 +168,7 @@ class Endboss extends MovableObject {
     this.moveLeft();
     this.speed = 15;
     this.otherDirection = false;
-    if (!this.isRealyDead) this.spawnBoss_sound.play();
+    // if (!this.isRealyDead) this.spawnBoss_sound.play();
   }
 
 
