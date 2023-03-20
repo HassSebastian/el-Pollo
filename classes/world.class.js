@@ -226,16 +226,15 @@ class World {
    */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    if (!this.playIndikator) {
+    if (!playIndikator) {
+      this.addToMap(this.startScreen);
+    } else {
       this.ctx.translate(this.camera_x, 0);
       this.drawBackground();
       this.drawStatusBars();
       this.drawCharacter();
       this.drawLevelObjects();
       this.ctx.translate(-this.camera_x, 0);
-    } else {
-      console.log('ok');
-      this.addObjectsToMap(this.startScreen);
     }
     this.drawRepeat();
   }

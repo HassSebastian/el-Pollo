@@ -8,9 +8,12 @@ let playIndikator = false;
 
 
 function init() {
-  // viewportMobile();
-  // pressBtnEveTrue();
-  // pressBtnEveFalse();
+  canvas = document.getElementById("canvas");
+  // world = new World(canvas, keyboard);
+  viewportMobile();
+  pressBtnEveTrue();
+  pressBtnEveFalse();
+
 }
 
 
@@ -29,6 +32,8 @@ async function playGame() {
   // document.getElementById("footer").classList.add("d-none");
   // document.getElementById("touchButtons").classList.remove("d-none");
   playIndikator = true;
+  gameOver();
+
 }
 
 
@@ -37,11 +42,8 @@ async function playGame() {
  * start the game
  * 
  */
-function startGameNow() {
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
-  gameOver();
-}
+// function startGameNow() {
+// }
 
 
 /*********** Mobil Buttons ***********
@@ -50,24 +52,24 @@ function startGameNow() {
  * and sets the corresponding keyboard properties to true
  * 
  */
-// function pressBtnEveTrue() {
-//   document.getElementById('upBtn').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.UP = true;
-//   });
-//   document.getElementById('spaceBtn').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.SPACE = true;
-//   });
-//   document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.LEFT = true;
-//   });
-//   document.getElementById('rightBtn').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.RIGHT = true;
-//   });
-// }
+function pressBtnEveTrue() {
+  document.getElementById('upBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.UP = true;
+  });
+  document.getElementById('spaceBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.SPACE = true;
+  });
+  document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = true;
+  });
+  document.getElementById('rightBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = true;
+  });
+}
 
 
 /**
@@ -76,24 +78,24 @@ function startGameNow() {
  * and sets the corresponding keyboard properties to false
  * 
  */
-// function pressBtnEveFalse() {
-//   document.getElementById('upBtn').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.UP = false;
-//   });
-//   document.getElementById('spaceBtn').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.SPACE = false;
-//   });
-//   document.getElementById('leftBtn').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.LEFT = false;
-//   });
-//   document.getElementById('rightBtn').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.RIGHT = false;
-//   });
-// }
+function pressBtnEveFalse() {
+  document.getElementById('upBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.UP = false;
+  });
+  document.getElementById('spaceBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+  });
+  document.getElementById('leftBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = false;
+  });
+  document.getElementById('rightBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = false;
+  });
+}
 
 
 /********** Desktop - Mobil - Check **********
@@ -148,16 +150,17 @@ function noMobil() {
  * 
  */
 function formatLandscape() {
-  if (playIndikator) {
+  if (!playIndikator) {
     document.getElementById('canvasContainer').style = "width: 100%;height: 100vh;display:block";
     document.getElementById('canvasContainer').classList.remove('d-none');
     document.getElementById('canvas').style = "width: 100%;height: 100vh;";
-    document.getElementById('touchButtons').classList.remove('d-none');
+    document.getElementById('playButton').style = "top:0";
+    document.getElementById('turnDevice').classList.add('d-none');
   } else {
-    document.getElementById('startScreen').classList.remove('d-none');
-    document.getElementById('playButton').style = "top:-265px";
+    document.getElementById('footer').classList.add('d-none');
+    document.getElementById('touchButtons').classList.remove('d-none');
+
   }
-  document.getElementById('turnDevice').classList.add('d-none');
 }
 
 
@@ -167,7 +170,6 @@ function formatLandscape() {
  * 
  */
 function formatPortrait() {
-  document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('turnDevice').classList.remove('d-none');
   if (!(document.getElementById('canvas').classList.contains('d-none'))) {
     document.getElementById('canvasContainer').classList.add('d-none');

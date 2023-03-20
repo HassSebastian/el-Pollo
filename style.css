@@ -46,11 +46,11 @@ canvas {
 }
 
 #playButton {
-  position: relative;
-  top: -345px;
+  position: absolute;
+  left: calc(50% - (50px / 2));
   width: 50px;
   height: 50px;
-  padding-bottom: 16px;
+  padding-top: 16px;
   cursor: pointer;
   animation: playButtonMove 1000ms linear infinite;
 }
@@ -67,17 +67,12 @@ canvas {
   }
 }
 
-#playButton:hover {
-  transform: scale(1.4);
-  transition: 250ms ease-in-out;
-}
-
 .footer {
   display: flex;
   justify-content: space-around;
   width: 100%;
   position: relative;
-  top: -122px;
+  top: -60px;
 }
 
 .footer div {
@@ -85,6 +80,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  width: 80px;
 }
 
 .footer img {

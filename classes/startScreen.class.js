@@ -9,7 +9,7 @@ class StartScreen extends MovableObject {
 
     constructor() {
         super();
-        this.loadImage(this.IMMAGE_StartScreen());
+        this.loadImage(this.IMMAGE_StartScreen);
     }
 
 
