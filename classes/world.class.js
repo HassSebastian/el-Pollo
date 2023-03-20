@@ -94,10 +94,12 @@ class World {
    * 
    */
   checkCollision() {
-    this.collisionWithEnemyWhileWorking();
-    this.bottleLooting();
-    this.coinLooting();
-    this.endBossHit();
+    if (playIndikator) {
+      this.collisionWithEnemyWhileWorking();
+      this.bottleLooting();
+      this.coinLooting();
+      this.endBossHit();
+    }
   }
 
 
@@ -229,6 +231,8 @@ class World {
     if (!playIndikator) {
       this.addToMap(this.startScreen);
     } else {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
       this.ctx.translate(this.camera_x, 0);
       this.drawBackground();
       this.drawStatusBars();

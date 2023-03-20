@@ -245,7 +245,7 @@ class MovableObject extends DrawableObject {
    * 
    */
   winAnimation() {
-    if (world.level.enemies[0].energy === 100) return true;
+    if (playIndikator && world.level.enemies[0].energy === 100) return true;
   }
 
 

@@ -9,7 +9,7 @@ let playIndikator = false;
 
 function init() {
   canvas = document.getElementById("canvas");
-  // world = new World(canvas, keyboard);
+  world = new World(canvas, keyboard);
   viewportMobile();
   pressBtnEveTrue();
   pressBtnEveFalse();
@@ -23,7 +23,8 @@ function init() {
 *
 */
 async function playGame() {
-  await initLevel();
+  playIndikator = true;
+  setTimeout(await initLevel, 1000);
   // await setTimeout(startGameNow, 100);
   // document.getElementById("canvasContainer").classList.remove("d-none");
   // document.getElementById("canvas").classList.remove("d-none");
@@ -31,7 +32,6 @@ async function playGame() {
   // document.getElementById("startScreenImg").classList.add("d-none");
   // document.getElementById("footer").classList.add("d-none");
   // document.getElementById("touchButtons").classList.remove("d-none");
-  playIndikator = true;
   gameOver();
 
 }
