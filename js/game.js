@@ -5,15 +5,28 @@ let keyboard = new Keyboard();
 let realyGameOver = false;
 let realyGameOverCounter = 0;
 let playIndikator = false;
+let audioFiles = [
+  music_sound = new Audio("audio/music.mp3"),
+  coin_sound = new Audio("audio/collect-coins.mp3"),
+  bottles_sound = new Audio("audio/bottles.mp3"),
+  hurt_sound = new Audio("audio/hurt.mp3"),
+  walking_sound = new Audio("audio/walking.mp3"),
+  jump_sound = new Audio("audio/jump.mp3"),
+  win_sound = new Audio("audio/win.mp3"),
+  chicken_sound = new Audio("audio/chicken.mp3"),
+  throw_sound = new Audio("audio/throw.mp3"),
+  dying_sound = new Audio("audio/dying.mp3"),
+  hitChicken_sound = new Audio("audio/hitChicken.mp3"),
+  spawnBoss_sound = new Audio("audio/spawn_endboss.mp3"),
+  hitBoss_sound = new Audio("audio/hit_endboss.mp3"),
+  snoring_sound = new Audio("audio/snoring.mp3")
+];
 
 
 function init() {
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
   viewportMobile();
   pressBtnEveTrue();
   pressBtnEveFalse();
-
 }
 
 
@@ -23,17 +36,15 @@ function init() {
 *
 */
 async function playGame() {
+  await initLevel();
+  await setTimeout(startGameNow, 100);
+  document.getElementById("canvasContainer").classList.remove("d-none");
+  document.getElementById("canvas").classList.remove("d-none");
+  document.getElementById("startScreen").classList.add("d-none");
+  document.getElementById("startScreenImg").classList.add("d-none");
+  document.getElementById("footer").classList.add("d-none");
+  document.getElementById("touchButtons").classList.remove("d-none");
   playIndikator = true;
-  setTimeout(await initLevel, 1000);
-  // await setTimeout(startGameNow, 100);
-  // document.getElementById("canvasContainer").classList.remove("d-none");
-  // document.getElementById("canvas").classList.remove("d-none");
-  // document.getElementById("startScreen").classList.add("d-none");
-  // document.getElementById("startScreenImg").classList.add("d-none");
-  // document.getElementById("footer").classList.add("d-none");
-  // document.getElementById("touchButtons").classList.remove("d-none");
-  gameOver();
-
 }
 
 
@@ -42,8 +53,11 @@ async function playGame() {
  * start the game
  * 
  */
-// function startGameNow() {
-// }
+function startGameNow() {
+  canvas = document.getElementById("canvas");
+  world = new World(canvas, keyboard);
+  gameOver();
+}
 
 
 /*********** Mobil Buttons ***********
@@ -106,11 +120,8 @@ function pressBtnEveFalse() {
  */
 function viewportMobile() {
   requestAnimationFrame(() => {
-    if (/Mobil/.test(navigator.userAgent)) {
-      yesMobil();
-    } else {
-      if (playIndikator) noMobil();
-    }
+    if (/Mobil/.test(navigator.userAgent)) yesMobil();
+    else if (playIndikator) noMobil();
     viewportMobile();
   });
 }
@@ -122,11 +133,8 @@ function viewportMobile() {
  * 
  */
 function yesMobil() {
-  if (window.innerWidth > window.innerHeight) {
-    formatLandscape();
-  } else {
-    formatPortrait();
-  }
+  if (window.innerWidth > window.innerHeight) formatLandscape();
+  else formatPortrait();
 }
 
 
@@ -136,11 +144,8 @@ function yesMobil() {
  * 
  */
 function noMobil() {
-  if (window.innerWidth < 720) {
-    document.getElementById('canvasContainer').style = "width: 100%;";
-  } else {
-    document.getElementById('canvasContainer').style = "width: 720px;";
-  }
+  if (window.innerWidth < 720) document.getElementById('canvasContainer').style = "width: 100%;";
+  else document.getElementById('canvasContainer').style = "width: 720px;";
 }
 
 
@@ -150,17 +155,17 @@ function noMobil() {
  * 
  */
 function formatLandscape() {
-  if (!playIndikator) {
+  if (playIndikator) {
     document.getElementById('canvasContainer').style = "width: 100%;height: 100vh;display:block";
     document.getElementById('canvasContainer').classList.remove('d-none');
     document.getElementById('canvas').style = "width: 100%;height: 100vh;";
-    document.getElementById('playButton').style = "top:0";
-    document.getElementById('turnDevice').classList.add('d-none');
-  } else {
-    document.getElementById('footer').classList.add('d-none');
     document.getElementById('touchButtons').classList.remove('d-none');
-
+    document.getElementById('muteContainer').style = "top:8px";
+  } else {
+    document.getElementById('startScreen').classList.remove('d-none');
+    document.getElementById('startScreen').style = "width: 100%";
   }
+  document.getElementById('turnDevice').classList.add('d-none');
 }
 
 
@@ -170,6 +175,7 @@ function formatLandscape() {
  * 
  */
 function formatPortrait() {
+  document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('turnDevice').classList.remove('d-none');
   if (!(document.getElementById('canvas').classList.contains('d-none'))) {
     document.getElementById('canvasContainer').classList.add('d-none');
@@ -200,6 +206,7 @@ function setStoppableInterval(fn, time) {
  */
 function stopGame() {
   intervalIds.forEach(clearInterval);
+  soundMute();
 }
 
 
@@ -221,7 +228,7 @@ function gameOver() {
 /**
 * 
 * Generates a random number between 0 and 2 (inclusive) to select a game over image.
-
+*
 * @function
 * @returns {number} A random number between 0 and 2 (inclusive). 
 *
@@ -250,3 +257,28 @@ function newGame() {
   document.getElementById("footer").classList.remove("d-none");
 }
 
+
+/**
+ * 
+ * Mutes all audio files in the `audioFiles` array and 
+ * updates the DOM to show the corresponding button.
+ * 
+ */
+function soundMute() {
+  document.getElementById('unmuteSound').classList.add('d-none');
+  document.getElementById('muteSound').classList.remove('d-none');
+  audioFiles.forEach((e => e.muted = true));
+}
+
+
+/**
+ * 
+ * Turns the audio back on for all audio files in the `audioFiles` array and 
+ * updates the DOM to show the corresponding button.
+ * 
+ */
+function soundUnMute() {
+  document.getElementById('muteSound').classList.add('d-none');
+  document.getElementById('unmuteSound').classList.remove('d-none');
+  audioFiles.forEach((e => e.muted = false));
+}

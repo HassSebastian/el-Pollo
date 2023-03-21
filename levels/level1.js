@@ -85,22 +85,6 @@ function initLevel() {
       new Coins(),
       new Coins(),
       new Coins()
-    ],
-    // [
-    //   new Audio("audio/music.mp3"),
-    //   new Audio("audio/collect-coins.mp3"),
-    //   new Audio("audio/bottles.mp3"),
-    //   new Audio("audio/hurt.mp3"),
-    //   new Audio("audio/walking.mp3"),
-    //   new Audio("audio/jump.mp3"),
-    //   new Audio("audio/win.mp3"),
-    //   new Audio("audio/chicken.mp3"),
-    //   new Audio("audio/throw.mp3"),
-    //   new Audio("audio/dying.mp3"),
-    //   new Audio("audio/hitChicken.mp3"),
-    //   new Audio("audio/spawn_endboss.mp3"),
-    //   new Audio("audio/hit_endboss.mp3"),
-    //   new Audio("audio/snoring.mp3")
-    // ]
+    ]
   );
 }

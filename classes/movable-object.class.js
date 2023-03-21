@@ -18,20 +18,6 @@ class MovableObject extends DrawableObject {
   };
 
 
-  // music_sound = new Audio("audio/music.mp3");
-  // coin_sound = new Audio("audio/collect-coins.mp3");
-  // bottles_sound = new Audio("audio/bottles.mp3");
-  // hurt_sound = new Audio("audio/hurt.mp3");
-  // walking_sound = new Audio("audio/walking.mp3");
-  // jump_sound = new Audio("audio/jump.mp3");
-  // win_sound = new Audio("audio/win.mp3");
-  // chicken_sound = new Audio("audio/chicken.mp3");
-  // throw_sound = new Audio("audio/throw.mp3");
-  // dying_sound = new Audio("audio/dying.mp3");
-  // hitChicken_sound = new Audio("audio/hitChicken.mp3");
-  // spawnBoss_sound = new Audio("audio/spawn_endboss.mp3");
-  // hitBoss_sound = new Audio("audio/hit_endboss.mp3");
-  // snoring_sound = new Audio("audio/snoring.mp3");
 
 
   /**
@@ -168,8 +154,8 @@ class MovableObject extends DrawableObject {
     const index = world.level.coins.findIndex((item) => item.x === coinsx);
     this.world.level.coins.splice(index, 1);
     this.coin += 10;
-    // this.coin_sound.play();
-    // this.coin_sound.volume = 0.2;
+    audioFiles[1].play();
+    audioFiles[1].volume = 0.2;
   }
 
 
@@ -188,8 +174,8 @@ class MovableObject extends DrawableObject {
       );
       this.world.level.bottles.splice(index, 1);
       this.salsa_bottles += 10;
-      // this.bottles_sound.play();
-      // this.bottles_sound.volume = 0.1;
+      audioFiles[2].play();
+      audioFiles[2].volume = 0.1;
     }
   }
 
@@ -207,8 +193,8 @@ class MovableObject extends DrawableObject {
     world.level.enemies[index].energy = 100;
     world.level.enemies[index].speed = 0;
     world.level.enemies[index].deadEnemy = true;
-    // this.hitChicken_sound.play();
-    // this.hitChicken_sound.volume = 0.2;
+    audioFiles[10].play();
+    audioFiles[10].volume = 0.2;
   }
 
 
@@ -245,7 +231,7 @@ class MovableObject extends DrawableObject {
    * 
    */
   winAnimation() {
-    if (playIndikator && world.level.enemies[0].energy === 100) return true;
+    if (world.level.enemies[0].energy === 100) return true;
   }
 
 

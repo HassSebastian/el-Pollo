@@ -10,8 +10,8 @@ class World {
   statusCoin = new StatusCoin();
   statusEndBoss = new StatusEndBoss();
   gameOver = new GameOver();
-  startScreen = new StartScreen();
   throwableObject = [];
+
 
 
   constructor(canvas, keyboard) {
@@ -94,12 +94,10 @@ class World {
    * 
    */
   checkCollision() {
-    if (playIndikator) {
-      this.collisionWithEnemyWhileWorking();
-      this.bottleLooting();
-      this.coinLooting();
-      this.endBossHit();
-    }
+    this.collisionWithEnemyWhileWorking();
+    this.bottleLooting();
+    this.coinLooting();
+    this.endBossHit();
   }
 
 
@@ -228,18 +226,12 @@ class World {
    */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    if (!playIndikator) {
-      this.addToMap(this.startScreen);
-    } else {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      this.ctx.translate(this.camera_x, 0);
-      this.drawBackground();
-      this.drawStatusBars();
-      this.drawCharacter();
-      this.drawLevelObjects();
-      this.ctx.translate(-this.camera_x, 0);
-    }
+    this.ctx.translate(this.camera_x, 0);
+    this.drawBackground();
+    this.drawStatusBars();
+    this.drawCharacter();
+    this.drawLevelObjects();
+    this.ctx.translate(-this.camera_x, 0);
     this.drawRepeat();
   }
 

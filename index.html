@@ -32,7 +32,6 @@
     <script src="./classes/throwable-object.class.js"></script>
     <script src="./classes/endboss.class.js"></script>
     <script src="./classes/game_over.class.js"></script>
-    <script src="./classes/startScreen.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
   </head>
@@ -43,13 +42,41 @@
       <span>Turn Your Device</span>
     </div>
 
-    <div id="canvasContainer" class="canvasContainer">
-      <canvas id="canvas" width="720" height="480"> </canvas>
+    <div id="canvasContainer" class="canvasContainer d-none">
+      <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+      <div id="touchButtons" class="touchButtons d-none">
+        <img id="upBtn" class="arrowUp" src="img/addPicture/arrow.png" />
+        <img id="spaceBtn" src="img/addPicture/space.png" />
+        <img id="leftBtn" src="img/addPicture/arrow.png" />
+        <img id="rightBtn" class="arrowRight" src="img/addPicture/arrow.png" />
+      </div>
+      <div id="muteContainer" class="muteContainer">
+        <img
+          id="muteSound"
+          onclick="soundUnMute()"
+          class="d-none"
+          src="img/addPicture/mute.png"
+        />
+        <img
+          id="unmuteSound"
+          onclick="soundMute()"
+          src="img/addPicture/unmute.png"
+        />
+      </div>
+    </div>
+
+    <div id="startScreen">
+      <img
+        id="startScreenImg"
+        src="img/9_intro_outro_screens/start/startscreen_1.png"
+      />
+
       <img
         id="playButton"
         src="img/addPicture/playButton.png"
         onclick="playGame()"
       />
+
       <div id="footer" class="footer">
         <div>
           <span>Trow Bottle</span>
@@ -68,15 +95,8 @@
           <img class="arrowRight" src="img/addPicture/arrow.png" />
         </div>
       </div>
-
-      <div id="touchButtons" class="touchButtons d-none">
-        <img id="upBtn" class="arrowUp" src="img/addPicture/arrow.png" />
-        <img id="spaceBtn" src="img/addPicture/space.png" />
-        <img id="leftBtn" src="img/addPicture/arrow.png" />
-        <img id="rightBtn" class="arrowRight" src="img/addPicture/arrow.png" />
-      </div>
     </div>
 
-    <!-- <div id="newGame" class="newGame d-none" onclick="newGame()">New Game?</div> -->
+    <div id="newGame" class="newGame d-none" onclick="newGame()">New Game?</div>
   </body>
 </html>

@@ -70,7 +70,7 @@ class ThrowableObject extends MovableObject {
    */
   bottleThrowAnimationAndSound() {
     this.playAnimation(this.IMMAGES_Bottles_Rotation);
-    // this.throw_sound.play();
-    // this.throw_sound.volume = 0.2;
+    audioFiles[8].play();
+    audioFiles[8].volume = 0.2;
   }
 }
