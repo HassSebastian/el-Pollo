@@ -145,7 +145,10 @@ function yesMobil() {
  */
 function noMobil() {
   if (window.innerWidth < 720) document.getElementById('canvasContainer').style = "width: 100%;";
-  else document.getElementById('canvasContainer').style = "width: 720px;";
+  else {
+    document.getElementById('canvasContainer').style = "width: 720px;";
+    document.getElementById('muteContainer').style = "top:unset";
+  }
 }
 
 
@@ -158,7 +161,7 @@ function formatLandscape() {
   if (playIndikator) {
     document.getElementById('canvasContainer').style = "width: 100%;height: 100vh;display:block";
     document.getElementById('canvasContainer').classList.remove('d-none');
-    document.getElementById('canvas').style = "width: 100%;height: 100vh;";
+    document.getElementById('canvas').style = "width: 100%;  aspect-ratio: 3/2";
     document.getElementById('touchButtons').classList.remove('d-none');
     document.getElementById('muteContainer').style = "top:8px";
   } else {
