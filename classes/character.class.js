@@ -146,7 +146,7 @@ class Character extends MovableObject {
       audioFiles[0].play();
       audioFiles[0].volume = .2;
       audioFiles[7].play();
-      audioFiles[7].volume = .07;
+      audioFiles[7].volume = .05;
     }
   }
 
