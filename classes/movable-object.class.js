@@ -66,6 +66,11 @@ class MovableObject extends DrawableObject {
     );
   }
 
+  isCollidingFromTop(mo) {
+    return (
+      this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
+    );
+  }
 
   /**
    * 
@@ -187,7 +192,7 @@ class MovableObject extends DrawableObject {
    * @param {Object} enemy - The enemy object to check collision with.
    * 
    */
-  isCollidingFromUp(enemy) {
+  isCollidingFromTop(enemy) {
     let enemyx = enemy.x;
     let index = world.level.enemies.findIndex((item) => item.x === enemyx);
     world.level.enemies[index].energy = 100;

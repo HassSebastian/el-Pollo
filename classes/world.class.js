@@ -113,7 +113,7 @@ class World {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
       }
-      if (this.jumpOnAnEnemy(enemy)) this.character.isCollidingFromUp(enemy);
+      if (this.jumpOnAnEnemy(enemy)) this.character.isCollidingFromTop(enemy);
     });
   }
 

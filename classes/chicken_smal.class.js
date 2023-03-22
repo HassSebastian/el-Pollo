@@ -1,11 +1,11 @@
 class Chicken_smal extends MovableObject {
-  y = 360;
+  y = 370;
   height = 60;
   width = 60;
   deadEnemy = false;
 
   offset = {
-    top: 0,
+    top: -20,
     left: 0,
     right: 0,
     bottom: 0
