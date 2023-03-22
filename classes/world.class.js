@@ -48,7 +48,7 @@ class World {
   runThrowObjects() {
     setStoppableInterval(() => {
       this.checkThroObjects();
-    }, 100);
+    }, 150);
   }
 
 
@@ -233,9 +233,9 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.drawBackground();
+    this.drawLevelObjects();
     this.drawStatusBars();
     this.drawCharacter();
-    this.drawLevelObjects();
     this.ctx.translate(-this.camera_x, 0);
     this.drawRepeat();
   }

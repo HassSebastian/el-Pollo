@@ -144,10 +144,14 @@ function yesMobil() {
  * 
  */
 function noMobil() {
-  if (window.innerWidth < 720) document.getElementById('canvasContainer').style = "width: 100%;";
-  else {
+  if (window.innerWidth < 720) {
+    document.getElementById('canvasContainer').style = "width: 100%;";
+    document.getElementById('canvas').style = "width: 100%;aspect-ratio: 3/2";
+
+  } else {
     document.getElementById('canvasContainer').style = "width: 720px;";
     document.getElementById('muteContainer').style = "top:unset";
+    // document.getElementById('toggleFullscreen').classList.remove('d-none');
   }
 }
 
@@ -161,8 +165,9 @@ function formatLandscape() {
   if (playIndikator) {
     document.getElementById('canvasContainer').style = "width: 100%;height: 100vh;display:block";
     document.getElementById('canvasContainer').classList.remove('d-none');
-    document.getElementById('canvas').style = "width: 100%;  aspect-ratio: 3/2";
+    document.getElementById('canvas').style = "width: 100%;height: 100% ";
     document.getElementById('touchButtons').classList.remove('d-none');
+    document.getElementById('toggleFullscreen').classList.add('d-none');
     document.getElementById('muteContainer').style = "top:8px";
   } else {
     document.getElementById('startScreen').classList.remove('d-none');
@@ -284,4 +289,14 @@ function soundUnMute() {
   document.getElementById('muteSound').classList.add('d-none');
   document.getElementById('unmuteSound').classList.remove('d-none');
   audioFiles.forEach((e => e.muted = false));
+}
+
+
+function toggleFullscreen() {
+  const fullscreenDiv = document.getElementById('canvasContainer');
+  if (!document.fullscreenElement) {
+    fullscreenDiv.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 }

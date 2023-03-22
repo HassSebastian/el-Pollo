@@ -75,12 +75,21 @@ canvas {
 .muteContainer {
   position: absolute;
   left: 50%;
+  display: flex;
+  gap: 16px;
   padding-top: 16px;
 }
 
 #unmuteSound,
-#muteSound {
+#muteSound,
+#toggleFullscreen {
   height: 20px;
+  cursor: pointer;
+}
+
+#toggleFullscreen:hover {
+  transition: 250ms ease-in-out;
+  transform: scale(1.2);
 }
 
 .footer {
