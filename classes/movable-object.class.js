@@ -203,6 +203,7 @@ class MovableObject extends DrawableObject {
   }
 
 
+
   /**
    * 
    * Calculates the difference between the position of the first boss in the level and the character.

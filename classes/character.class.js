@@ -7,7 +7,7 @@ class Character extends MovableObject {
   idleAnimation = 0;
 
   offset = {
-    top: 130,
+    top: 100,
     left: 0,
     right: 0,
     bottom: 0

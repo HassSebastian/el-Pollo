@@ -20,7 +20,8 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.run();
+    this.runCollision();
+    this.runThrowObjects();
   }
 
 
@@ -39,11 +40,15 @@ class World {
    * Starts running the game loop, which checks for collisions and thrown objects every 300 milliseconds.
    * 
    */
-  run() {
+  runCollision() {
     setStoppableInterval(() => {
       this.checkCollision();
+    }, 70);
+  }
+  runThrowObjects() {
+    setStoppableInterval(() => {
       this.checkThroObjects();
-    }, 300);
+    }, 100);
   }
 
 

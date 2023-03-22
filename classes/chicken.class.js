@@ -5,9 +5,9 @@ class Chicken extends MovableObject {
   deadEnemy = false;
 
   offset = {
-    top: 0,
-    left: 0,
-    right: 0,
+    top: 5,
+    left: 5,
+    right: 5,
     bottom: 0
   };
 
