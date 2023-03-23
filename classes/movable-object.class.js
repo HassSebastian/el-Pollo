@@ -66,11 +66,13 @@ class MovableObject extends DrawableObject {
     );
   }
 
+
   isCollidingFromTop(mo) {
     return (
       this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
     );
   }
+
 
   /**
    * 
@@ -79,7 +81,7 @@ class MovableObject extends DrawableObject {
    * 
    */
   hit() {
-    this.energy += 5;
+    this.energy += 2;
     if (this.energy >= 99) this.energy = 100;
     else this.lastHit = new Date().getTime();
   }

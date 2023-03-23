@@ -43,7 +43,7 @@ class World {
   runCollision() {
     setStoppableInterval(() => {
       this.checkCollision();
-    }, 70);
+    }, 50);
   }
   runThrowObjects() {
     setStoppableInterval(() => {

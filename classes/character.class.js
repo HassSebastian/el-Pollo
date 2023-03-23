@@ -287,7 +287,7 @@ class Character extends MovableObject {
    * 
    */
   idleGroundPosition() {
-    if (this.idleAnimation < 30) this.loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
+    if (this.idleAnimation <= 2) this.loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
   }
 
 
@@ -297,7 +297,7 @@ class Character extends MovableObject {
    * 
    */
   isIdle() {
-    if (this.idleAnimation >= 30) this.playAnimation(this.IMAGES_Idle);
+    if (this.idleAnimation > 2 && !this.isHurt()) this.playAnimation(this.IMAGES_Idle);
   }
 
 
@@ -307,7 +307,7 @@ class Character extends MovableObject {
    * 
    */
   longIdle() {
-    if (this.idleAnimation >= 60) {
+    if (this.idleAnimation >= 30) {
       this.playAnimation(this.IMAGES_Long_Idle);
       if (!this.isRealyDead) audioFiles[13].play();
     }
