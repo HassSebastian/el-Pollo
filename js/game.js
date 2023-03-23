@@ -5,6 +5,7 @@ let keyboard = new Keyboard();
 let realyGameOver = false;
 let realyGameOverCounter = 0;
 let playIndikator = false;
+let fullscreen = false;
 let audioFiles = [
   music_sound = new Audio("audio/music.mp3"),
   coin_sound = new Audio("audio/collect-coins.mp3"),
@@ -144,14 +145,46 @@ function yesMobil() {
  * 
  */
 function noMobil() {
-  if (window.innerWidth < 720) {
-    document.getElementById('canvasContainer').style = "width: 100%;";
-    document.getElementById('canvas').style = "width: 100%;aspect-ratio: 3/2";
-  } else {
-    document.getElementById('canvasContainer').style = "width: 720px;";
-    document.getElementById('muteContainer').style = "top:unset";
-    // document.getElementById('toggleFullscreen').classList.remove('d-none');
+  if (fullscreen) fullScreenSettings();
+  else {
+    if (window.innerWidth < 720) smalScreenSettings();
+    else normScreenSettings();
   }
+}
+
+
+/**
+ * 
+ * settings fullScreen
+ * 
+ */
+function fullScreenSettings() {
+  document.getElementById('canvasContainer').style = "width:100%;height:100%";
+  document.getElementById('canvas').style = "width:100%;height:100%";
+  document.getElementById('touchButtons').style = "position:absolute;bottom:20px";
+}
+
+
+/**
+ * 
+ * settings smalScreen
+ * 
+ */
+function smalScreenSettings() {
+  document.getElementById('canvasContainer').style = "width:100%";
+  document.getElementById('canvas').style = "width:100%,aspect-ratio:3/2";
+}
+
+
+/**
+ * 
+ * settings normSreen
+ * 
+ */
+function normScreenSettings() {
+  document.getElementById('canvasContainer').style = "width:720px";
+  document.getElementById('muteContainer').style = "top:unset";
+  document.getElementById('touchButtons').style = "position:relative;bottom:45px";
 }
 
 
@@ -291,7 +324,7 @@ function soundUnMute() {
 }
 
 
-function toggleFullscreen() {
-  const fullscreenDiv = document.getElementById('canvasContainer');
-  !document.fullscreenElement ? fullscreenDiv.requestFullscreen() : document.exitFullscreen();
+function toggleScreen() {
+  (fullscreen) ? fullscreen = false : fullscreen = true;
 }
+
