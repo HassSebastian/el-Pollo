@@ -173,6 +173,7 @@ function fullScreenSettings() {
 function smalScreenSettings() {
   document.getElementById('canvasContainer').style = "width:100%";
   document.getElementById('canvas').style = "width:100%,aspect-ratio:3/2";
+
 }
 
 
@@ -185,6 +186,7 @@ function normScreenSettings() {
   document.getElementById('canvasContainer').style = "width:720px";
   document.getElementById('muteContainer').style = "top:unset";
   document.getElementById('touchButtons').style = "position:relative;bottom:45px";
+  document.getElementById('toggleFullscreen').classList.remove('d-none');
 }
 
 
@@ -323,7 +325,11 @@ function soundUnMute() {
   audioFiles.forEach((e => e.muted = false));
 }
 
-
+/**
+ * 
+ * toggle fullSreen
+ * 
+ */
 function toggleScreen() {
   (fullscreen) ? fullscreen = false : fullscreen = true;
 }
