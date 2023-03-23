@@ -18,8 +18,6 @@ class MovableObject extends DrawableObject {
   };
 
 
-
-
   /**
    * 
    * Applies gravity to the character by decreasing its `y` position based on its current `speedY`.
@@ -51,6 +49,7 @@ class MovableObject extends DrawableObject {
 
 
   /**
+   * 
    * Determines whether this object is colliding with another object.
    *
    * @param {Object} mo - The object to check collision with.
@@ -67,6 +66,14 @@ class MovableObject extends DrawableObject {
   }
 
 
+  /**
+   * 
+   * Determines whether the current object collides with the given object from the top.
+   *
+   * @param {Object} mo - The object to check for collision with.
+   * @return {boolean} Whether the current object is colliding with the given object from the top.
+   * 
+   */
   isCollidingFromTop(mo) {
     return (
       this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
@@ -123,6 +130,7 @@ class MovableObject extends DrawableObject {
     this.x += this.speed;
     this.otherDirection = false;
   }
+
 
   /**
    * 

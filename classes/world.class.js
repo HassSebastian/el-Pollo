@@ -37,7 +37,8 @@ class World {
 
   /**
    * 
-   * Starts running the game loop, which checks for collisions and thrown objects every 300 milliseconds.
+   * Starts running the game loop, 
+   * which checks for collisions and thrown objects every 300 milliseconds.
    * 
    */
   runCollision() {
@@ -45,6 +46,15 @@ class World {
       this.checkCollision();
     }, 50);
   }
+
+
+  /**
+   * 
+   * Runs a loop that checks for objects to throw.
+   *
+   * @returns {void}
+   * 
+   */
   runThrowObjects() {
     setStoppableInterval(() => {
       this.checkThroObjects();

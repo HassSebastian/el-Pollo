@@ -147,7 +147,6 @@ function noMobil() {
   if (window.innerWidth < 720) {
     document.getElementById('canvasContainer').style = "width: 100%;";
     document.getElementById('canvas').style = "width: 100%;aspect-ratio: 3/2";
-
   } else {
     document.getElementById('canvasContainer').style = "width: 720px;";
     document.getElementById('muteContainer').style = "top:unset";

@@ -275,6 +275,7 @@ class Character extends MovableObject {
    * Checks if Pepe is currently idle based on keyboard input and his current state.
    *
    * @returns {boolean} True if Pepe is idle, false otherwise.
+   * 
    */
   pepeIdleness() {
     return !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.SPACE && !this.isHurt() && !this.isDead() && !this.isAboveGround();

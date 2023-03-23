@@ -13,6 +13,7 @@ class DrawableObject {
    * Loads an array of image paths into a cache for later use.
    *
    * @param {string[]} arr - An array of image paths to load.
+   * 
    */
   loadImage(path) {
     this.img = new Image();
@@ -26,6 +27,7 @@ class DrawableObject {
    * If there is an error loading the image, a warning is logged to the console.
    *
    * @param {CanvasRenderingContext2D} ctx - The canvas context to draw on.
+   * 
    */
   draw(ctx) {
     try {
@@ -42,6 +44,7 @@ class DrawableObject {
    * Draws a white frame around certain game objects using the provided 2D context.
    * 
    * @param {CanvasRenderingContext2D} ctx - The 2D context used for drawing.
+   * 
    */
   drawFrame(ctx) {
     if (
