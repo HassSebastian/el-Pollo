@@ -294,9 +294,5 @@ function soundUnMute() {
 
 function toggleFullscreen() {
   const fullscreenDiv = document.getElementById('canvasContainer');
-  if (!document.fullscreenElement) {
-    fullscreenDiv.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
+  !document.fullscreenElement ? fullscreenDiv.requestFullscreen() : document.exitFullscreen();
 }
